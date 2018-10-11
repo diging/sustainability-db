@@ -3,17 +3,18 @@ package edu.asu.diging.sustainability.core.service.impl;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.opencsv.CSVReaderBuilder;
 import com.opencsv.CSVReaderHeaderAware;
 import com.opencsv.CSVReaderHeaderAwareBuilder;
 import com.opencsv.RFC4180Parser;
@@ -21,6 +22,7 @@ import com.opencsv.RFC4180ParserBuilder;
 
 import edu.asu.diging.sustainability.core.data.AnnotationRepository;
 import edu.asu.diging.sustainability.core.data.ConceptRepository;
+import edu.asu.diging.sustainability.core.model.IAnnotation;
 import edu.asu.diging.sustainability.core.model.IConcept;
 import edu.asu.diging.sustainability.core.model.impl.Annotation;
 import edu.asu.diging.sustainability.core.model.impl.Concept;
@@ -97,5 +99,36 @@ public class AnnotationManager implements IAnnotationManager {
                 annotationRepo.save(annotation);
             }
         }
+    }
+    
+    @Override
+    public Map<String, List<IAnnotation>> findTextsForConcepts(String[] conceptIds) {
+        Map<String, List<IAnnotation>> results = new HashMap<>();
+        Map<String, Set<String>> textsByConcepts = new HashMap<>();
+        for (String id : conceptIds) {
+            List<IAnnotation> annotations = annotationRepo.findByConceptId(id);
+            annotations.forEach(a -> {
+                String text = a.getOccursIn();
+                if (results.get(text) == null) {
+                    results.put(text, new ArrayList<>());
+                }
+                results.get(text).add(a);
+                if (textsByConcepts.get(text) == null) {
+                    textsByConcepts.put(text, new HashSet<>());
+                }
+                textsByConcepts.get(text).add(id);
+            });      
+        }
+        
+        List<String> toBeRemoved = new ArrayList<>();
+        for (String textUri : results.keySet()) {
+            // if all concepts appear in text
+            if (textsByConcepts.get(textUri).size() != conceptIds.length) {
+                toBeRemoved.add(textUri);
+            }
+        }
+        
+        toBeRemoved.forEach(r -> results.remove(r));
+        return results;
     }
 }
