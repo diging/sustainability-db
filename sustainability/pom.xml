@@ -23,6 +23,10 @@
 		<db.url>jdbc:mysql://localhost:3306/sustain?serverTimezone=UTC</db.url>
 		<db.user>sustain</db.user>
 		<db.password>sustain</db.password>
+		
+		<tomcat.deploy.path></tomcat.deploy.path>
+        <tomcat.app.name>sustainability-db</tomcat.app.name>
+        <tomcat.server.id>TomcatServer</tomcat.server.id>
 	</properties>
 
 	<dependencyManagement>
@@ -288,6 +292,16 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>${tomcat.deploy.path}</url>
+                    <server>${tomcat.server.id}</server>
+                    <path>/${tomcat.app.name}</path>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
