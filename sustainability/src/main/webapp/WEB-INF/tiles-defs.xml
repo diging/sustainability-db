@@ -31,12 +31,17 @@
 		<put-attribute name="content" value="/WEB-INF/views/admin/concepts/list.jsp" />	
 	</definition>
 	
+<<<<<<< HEAD
 	<definition name="admin/user/list" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/admin/user/list.jsp" />	
 	</definition>
 	
 	<definition name="admin/annotation/list" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/admin/annotation/list.jsp" />	
+=======
+	<definition name="admin/concept/configuration" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/admin/concepts/configuration.jsp" />	
+>>>>>>> [SUS-1] Adding configuration file for concept access priveleges.
 	</definition>
 	
 	<!-- Researcher perspective -->

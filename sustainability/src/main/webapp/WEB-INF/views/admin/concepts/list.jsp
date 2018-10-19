@@ -3,6 +3,11 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
+<a href="configuration" class="btn btn-primary a-btn-slide-text">
+  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+  <span><strong>Edit</strong></span>            
+</a>
+
 <div id="tree"></div>
 
 <script
@@ -26,8 +31,10 @@
 						data: JSON.parse(xhr.responseText),
 						expandIcon: "fa fa-caret-right",
 						collapseIcon: "fa fa-caret-down",
+						
 					});
 				}
+				
 			}
 		});
 	});
