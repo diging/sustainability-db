@@ -30,11 +30,9 @@
 					$('#tree').treeview({ 
 						data: JSON.parse(xhr.responseText),
 						expandIcon: "fa fa-caret-right",
-						collapseIcon: "fa fa-caret-down",
-						
+						collapseIcon: "fa fa-caret-down",		
 					});
 				}
-				
 			}
 		});
 	});
