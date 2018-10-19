@@ -1,7 +1,8 @@
 package edu.asu.diging.sustainability.web;
 
+import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import edu.asu.diging.sustainability.core.model.IConcept;
+import edu.asu.diging.sustainability.core.model.impl.Concept;
 import edu.asu.diging.sustainability.core.service.IConceptManager;
 
 @Controller
@@ -54,5 +56,16 @@ public class ListConceptController {
             }
             
         }
+    }
+    
+    @RequestMapping(value="/admin/concept/configuration")
+    public String configuration(Model model) {
+      List<IConcept> concepts = conceptManager.getTopConcepts();
+      model.addAttribute("concepts", concepts);
+      List<String> roles = new ArrayList<String>();
+      roles.add("Researcher");
+      roles.add("Practitioner");
+      model.addAttribute("roles", roles);
+      return "admin/concept/configuration";
     }
 }

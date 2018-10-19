@@ -26,6 +26,10 @@
 		<put-attribute name="content" value="/WEB-INF/views/admin/concepts/list.jsp" />	
 	</definition>
 	
+	<definition name="admin/concept/configuration" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/admin/concepts/configuration.jsp" />	
+	</definition>
+	
 	<!-- Researcher perspective -->
 	<definition name="perspective/researcher" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/researcher/main.jsp" />	
