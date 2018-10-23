@@ -3,6 +3,7 @@ package edu.asu.diging.sustainability.core.service.impl;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,14 +12,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.opencsv.CSVReaderHeaderAware;
-import com.opencsv.CSVReaderHeaderAwareBuilder;
-import com.opencsv.RFC4180Parser;
-import com.opencsv.RFC4180ParserBuilder;
 
 import edu.asu.diging.sustainability.core.data.AnnotationRepository;
 import edu.asu.diging.sustainability.core.data.ConceptRepository;
@@ -40,21 +38,22 @@ public class AnnotationManager implements IAnnotationManager {
 
     @Autowired
     private AnnotationRepository annotationRepo;
-    
+
     @Autowired
     private ConceptRepository conceptRepo;
 
-    /* (non-Javadoc)
-     * @see edu.asu.diging.sustainability.core.service.impl.IAnnotationManager#addAnnotations(byte[], java.lang.String)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see edu.asu.diging.sustainability.core.service.impl.IAnnotationManager#
+     * addAnnotations(byte[], java.lang.String)
      */
     @Override
     public void addAnnotations(byte[] file, String filename) throws IOException {
-        RFC4180Parser rfc4180Parser = new RFC4180ParserBuilder().build();
-        CSVReaderHeaderAwareBuilder csvReaderBuilder = (CSVReaderHeaderAwareBuilder) new CSVReaderHeaderAwareBuilder(new InputStreamReader(new ByteArrayInputStream(file), Charset.forName("utf-8")))
-                .withCSVParser(rfc4180Parser);
-        try (CSVReaderHeaderAware csvReader = csvReaderBuilder.build()) {
-            Map<String, String> nextRecord;
-            while ((nextRecord = csvReader.readMap()) != null) {
+
+        try (Reader in = new InputStreamReader(new ByteArrayInputStream(file), Charset.forName("utf-8"));) {
+            Iterable<CSVRecord> records = CSVFormat.RFC4180.withFirstRecordAsHeader().withIgnoreEmptyLines(true).parse(in);
+            for (CSVRecord nextRecord : records) {
                 Annotation annotation = new Annotation();
                 annotation.setSegment(nextRecord.get(SEGMENT));
                 annotation.setEnd(new Integer(nextRecord.get(END)));
@@ -77,7 +76,7 @@ public class AnnotationManager implements IAnnotationManager {
                         conceptRepo.save(concept);
                         annotation.setConcept(concept);
                     }
-                    
+
                     if (parent == null) {
                         parent = annotation.getConcept();
                     } else {
@@ -91,16 +90,16 @@ public class AnnotationManager implements IAnnotationManager {
                         }
                         parent.getChildren().add(child);
                         annotation.getConcept().setParent(parent);
-                        conceptRepo.save((Concept)parent);
-                        conceptRepo.save((Concept)annotation.getConcept());
+                        conceptRepo.save((Concept) parent);
+                        conceptRepo.save((Concept) annotation.getConcept());
                     }
                 }
-                
+
                 annotationRepo.save(annotation);
             }
         }
     }
-    
+
     @Override
     public Map<String, List<IAnnotation>> findTextsForConcepts(String[] conceptIds) {
         Map<String, List<IAnnotation>> results = new HashMap<>();
@@ -117,9 +116,9 @@ public class AnnotationManager implements IAnnotationManager {
                     textsByConcepts.put(text, new HashSet<>());
                 }
                 textsByConcepts.get(text).add(id);
-            });      
+            });
         }
-        
+
         List<String> toBeRemoved = new ArrayList<>();
         for (String textUri : results.keySet()) {
             // if all concepts appear in text
@@ -127,7 +126,7 @@ public class AnnotationManager implements IAnnotationManager {
                 toBeRemoved.add(textUri);
             }
         }
-        
+
         toBeRemoved.forEach(r -> results.remove(r));
         return results;
     }
