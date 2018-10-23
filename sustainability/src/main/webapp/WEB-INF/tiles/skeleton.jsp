@@ -102,6 +102,7 @@
 		    <input placeholder="Password" class="form-control input-sm" type="password" id="password" name="password"/>    
 		    <button type="submit" class="btn btn-default btn-sm">Log in</button>
 		</form>
+		
 		</sec:authorize>
         </p>
         </div>

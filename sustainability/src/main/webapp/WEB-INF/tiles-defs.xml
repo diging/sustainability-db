@@ -15,7 +15,12 @@
 	</definition>
 	
 	<definition name="home" extends="base.definition">
+		<put-attribute name="title" value="Register new account" />
 		<put-attribute name="content" value="/WEB-INF/views/home.jsp" />	
+	</definition>
+	
+	<definition name="register" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/register.jsp" />	
 	</definition>
 	
 	<definition name="admin/annotation/add" extends="base.definition">
