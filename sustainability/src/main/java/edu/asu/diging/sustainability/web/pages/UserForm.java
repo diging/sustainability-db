@@ -1,12 +1,24 @@
 package edu.asu.diging.sustainability.web.pages;
 
-public class UserForm {
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
+import edu.asu.diging.sustainability.core.validation.FieldMatch;
+
+@FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match.")
+public class UserForm {
+    
+    @NotEmpty(message="Please enter a username.")
     private String username;
     private String firstName;
     private String lastName;
+    
+    @Email(message="Please provide a well-formed email address.")
+    @NotEmpty(message="Please enter your email address.")
     private String email;
+    @NotEmpty(message="Please enter a password.")
     private String password;
+    @NotEmpty(message="Please repeat your password.")
     private String confirmPassword;
 
     public String getUsername() {

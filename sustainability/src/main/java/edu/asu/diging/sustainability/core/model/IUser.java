@@ -28,4 +28,12 @@ public interface IUser {
 
     void setRoles(Set<SustainabilityGrantedAuthority> roles);
 
+    void setEnabled(boolean enabled);
+
+    void setCredentialsNonExpired(boolean credentialsNonExpired);
+
+    void setAccountNonLocked(boolean accountNonLocked);
+
+    void setAccountNonExpired(boolean accountNonExpired);
+
 }

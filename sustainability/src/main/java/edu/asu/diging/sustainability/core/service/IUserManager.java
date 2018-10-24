@@ -1,11 +1,12 @@
 package edu.asu.diging.sustainability.core.service;
 
-import edu.asu.diging.sustainability.core.model.impl.User;
+import edu.asu.diging.sustainability.core.exception.UserAlreadyExistsException;
+import edu.asu.diging.sustainability.core.model.IUser;
 
 public interface IUserManager {
 
-    void save(User user);
+    void create(IUser user) throws UserAlreadyExistsException;
 
-    User findByUsername(String username);
+    IUser findByUsername(String username);
 
 }

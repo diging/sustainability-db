@@ -23,10 +23,10 @@
 		<db.url>jdbc:mysql://localhost:3306/sustain?serverTimezone=UTC</db.url>
 		<db.user>sustain</db.user>
 		<db.password>sustain</db.password>
-		
+
 		<tomcat.deploy.path></tomcat.deploy.path>
-        <tomcat.app.name>sustainability-db</tomcat.app.name>
-        <tomcat.server.id>TomcatServer</tomcat.server.id>
+		<tomcat.app.name>sustainability-db</tomcat.app.name>
+		<tomcat.server.id>TomcatServer</tomcat.server.id>
 	</properties>
 
 	<dependencyManagement>
@@ -125,6 +125,26 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.8.9</version>
 		</dependency>
+
+		<!-- Validation -->
+		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.0.13.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator-annotation-processor</artifactId>
+			<version>6.0.13.Final</version>
+		</dependency>
+
 
 		<!-- Logging -->
 		<dependency>
@@ -292,15 +312,15 @@
 				</configuration>
 			</plugin>
 			<plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.2</version>
-                <configuration>
-                    <url>${tomcat.deploy.path}</url>
-                    <server>${tomcat.server.id}</server>
-                    <path>/${tomcat.app.name}</path>
-                </configuration>
-            </plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<url>${tomcat.deploy.path}</url>
+					<server>${tomcat.server.id}</server>
+					<path>/${tomcat.app.name}</path>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 

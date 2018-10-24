@@ -7,11 +7,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import edu.asu.diging.sustainability.core.data.UserRepository;
+import edu.asu.diging.sustainability.core.exception.UserAlreadyExistsException;
+import edu.asu.diging.sustainability.core.model.IUser;
 import edu.asu.diging.sustainability.core.model.impl.User;
 import edu.asu.diging.sustainability.core.service.IUserManager;
 
+@Service
 public class UserService implements UserDetailsService, IUserManager {
     
     @Autowired
@@ -34,16 +38,21 @@ public class UserService implements UserDetailsService, IUserManager {
      * @see edu.asu.diging.sustainability.core.service.impl.IUserManager#save(edu.asu.diging.sustainability.core.model.impl.User)
      */
     @Override
-    public void save(User user) {
+    public void create(IUser user) throws UserAlreadyExistsException {
+        Optional<User> existingUser = userRepository.findById(user.getUsername());
+        if (existingUser.isPresent()) {
+            throw new UserAlreadyExistsException("The user already exists.");
+        }
+        user.setEnabled(false);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        userRepository.save((User)user);
     }
     
     /* (non-Javadoc)
      * @see edu.asu.diging.sustainability.core.service.impl.IUserManager#findByUsername(java.lang.String)
      */
     @Override
-    public User findByUsername(String username) {
+    public IUser findByUsername(String username) {
         Optional<User> foundUser = userRepository.findById(username);
         if (foundUser.isPresent()) {
             return foundUser.get();
