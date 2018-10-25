@@ -26,4 +26,6 @@
 	
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 
+	<util:properties id="usersFile" location="classpath:user.properties"/>
+	
 </beans>

@@ -61,6 +61,9 @@
           		<a href="<c:url value="/admin/concept/list" />" >Concepts</a>
           	</li>
           	<li role="presentation">
+          		<a href="<c:url value="/admin/user/list" />" >Users</a>
+          	</li>
+          	<li role="presentation">
          	 	<form action="<c:url value="/logout" />" method="POST">
          	 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   				<button class="btn-link" type="submit" title="Logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</button>
@@ -95,7 +98,7 @@
 	         
 	   	<sec:authorize access="isAnonymous()">
 	   	
-		<form name='f' class="form-inline pull-right" action="<c:url value="/login/authenticate" />" method="POST">
+		<form name='f' class="form-inline pull-right" action="<c:url value="/login" />" method="POST">
 			Login:
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   			<input placeholder="Username" class="form-control input-sm" type="text" id="username" name="username"/>        

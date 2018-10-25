@@ -7,4 +7,6 @@ public interface IUserFactory {
 
     IUser createUser(UserForm userForm);
 
+    IUser createUser(String username, String password, String role, boolean enabled);
+
 }

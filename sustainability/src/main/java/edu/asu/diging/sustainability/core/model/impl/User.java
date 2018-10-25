@@ -5,8 +5,11 @@ import java.util.Set;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -26,12 +29,14 @@ public class User implements IUser, UserDetails {
     private String lastName;
     private String email;
     private String password;
-    @ElementCollection(targetClass=SustainabilityGrantedAuthority.class)
+    @ElementCollection(targetClass=SustainabilityGrantedAuthority.class, fetch=FetchType.EAGER)
+    @Cascade({CascadeType.ALL})
     private Set<SustainabilityGrantedAuthority> roles;
     private boolean accountNonExpired;
     private boolean accountNonLocked;
     private boolean credentialsNonExpired;
     private boolean enabled;
+    private String notes;
     
     /* (non-Javadoc)
      * @see edu.asu.diging.sustainability.core.model.impl.IUser#getUsername()
@@ -125,6 +130,12 @@ public class User implements IUser, UserDetails {
         this.roles = roles;
         
     }
+    
+    @Override
+    public Set<SustainabilityGrantedAuthority> getRoles() {
+        return roles;
+    }
+    
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -144,5 +155,13 @@ public class User implements IUser, UserDetails {
     @Override
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+    @Override
+    public String getNotes() {
+        return notes;
+    }
+    @Override
+    public void setNotes(String notes) {
+        this.notes = notes;
     }  
 }

@@ -36,4 +36,10 @@ public interface IUser {
 
     void setAccountNonExpired(boolean accountNonExpired);
 
+    void setNotes(String notes);
+
+    String getNotes();
+
+    Set<SustainabilityGrantedAuthority> getRoles();
+
 }
