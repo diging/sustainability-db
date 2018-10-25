@@ -16,8 +16,6 @@
 	<mvc:annotation-driven />
 	<context:component-scan base-package="edu.asu.diging.sustainability" />
 	
-	<import resource="spring-security.xml" />
-	
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="classpath:locale/messages" />
