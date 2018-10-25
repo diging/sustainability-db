@@ -5,7 +5,7 @@
 
 <a href="configuration" class="btn btn-primary a-btn-slide-text">
   <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-  <span><strong>Edit</strong></span>            
+  <span><strong>Edit Configuration</strong></span>            
 </a>
 
 <div id="tree"></div>
@@ -30,7 +30,7 @@
 					$('#tree').treeview({ 
 						data: JSON.parse(xhr.responseText),
 						expandIcon: "fa fa-caret-right",
-						collapseIcon: "fa fa-caret-down",		
+						collapseIcon: "fa fa-caret-down",
 					});
 				}
 			}
