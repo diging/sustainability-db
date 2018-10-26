@@ -57,15 +57,4 @@ public class ListConceptController {
         }
     }
 
-    @RequestMapping(value = "/admin/concept/configuration")
-    public String configuration(Model model) {
-        List<IConcept> concepts = conceptManager.getTopConcepts();
-        model.addAttribute("concepts", concepts);
-        List<String> roles = new ArrayList<String>();
-        roles.add("Researcher");
-        roles.add("Practitioner");
-        model.addAttribute("roles", roles);
-        return "admin/concept/configuration";
-    }
-
 }

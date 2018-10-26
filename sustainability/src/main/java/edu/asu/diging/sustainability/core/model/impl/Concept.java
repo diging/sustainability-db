@@ -1,13 +1,15 @@
 package edu.asu.diging.sustainability.core.model.impl;
 
+import java.util.ArrayList;
 import java.util.List;
-
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
+import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -25,6 +27,8 @@ public class Concept implements IConcept {
     private String id;
 	private String name;
 	private String uri;
+	
+	private ArrayList<String> roles = new ArrayList<String>();
 	
 	@ManyToOne(targetEntity=Concept.class)
     private IConcept parent;
@@ -71,6 +75,15 @@ public class Concept implements IConcept {
     @Override
     public void setChildren(List<IConcept> children) {
         this.children = children;
+    }
+    @Override
+    public List<String> getRoles() {
+        return roles;
+    }
+    @Override
+    public void addRole(String role) {
+        System.out.println(role);
+        this.roles.add(role);
     }
     @Override
     public int hashCode() {

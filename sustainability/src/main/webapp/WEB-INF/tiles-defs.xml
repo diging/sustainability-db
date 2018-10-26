@@ -44,6 +44,10 @@
 >>>>>>> [SUS-1] Adding configuration file for concept access priveleges.
 	</definition>
 	
+	<definition name="admin/concept/updateconfiguration" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/admin/concepts/configuration.jsp" />	
+	</definition>
+	
 	<!-- Researcher perspective -->
 	<definition name="perspective/researcher" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/researcher/main.jsp" />	

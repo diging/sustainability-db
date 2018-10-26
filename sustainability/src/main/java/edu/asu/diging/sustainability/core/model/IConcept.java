@@ -24,4 +24,8 @@ public interface IConcept {
 
     String getId();
 
+    List<String> getRoles();
+
+    void addRole(String role);
+
 }

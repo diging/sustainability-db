@@ -45,4 +45,16 @@ public class ConceptManager implements IConceptManager {
         }
         return allConcepts;
     }
+    @Override
+    public IConcept getConceptById(String id) {
+        return (conceptRepo.findById(id)).get();
+            
+    }
+
+    @Override
+    public void updateConceptRoles(IConcept concept, String role) {
+        concept.addRole(role);
+        conceptRepo.save((Concept)concept);
+        return;
+    }
 }

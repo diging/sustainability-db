@@ -10,4 +10,8 @@ public interface IConceptManager {
 
     List<IConcept> getTopConcepts();
 
+    IConcept getConceptById(String id);
+
+    void updateConceptRoles(IConcept concept, String role);
+
 }
