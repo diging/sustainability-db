@@ -130,4 +130,11 @@ public class AnnotationManager implements IAnnotationManager {
         toBeRemoved.forEach(r -> results.remove(r));
         return results;
     }
+    
+    @Override
+    public List<IAnnotation> listAnnotations() {
+        List<IAnnotation> annotations = new ArrayList<>();
+        annotationRepo.findAll().forEach(a -> annotations.add(a));
+        return annotations;
+    }
 }
