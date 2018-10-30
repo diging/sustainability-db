@@ -55,13 +55,15 @@
           	
           	<sec:authorize access="isAuthenticated()">
           	<li role="presentation">
-          		<a href="<c:url value="/admin/annotation/add" />" >Add Annotations</a>
-          	</li>
-          	<li role="presentation">
           		<a href="<c:url value="/admin/concept/list" />" >Concepts</a>
           	</li>
-          	<li role="presentation">
-          		<a href="<c:url value="/admin/annotation/list" />" >Annotations</a>
+          	<li class="dropdown">
+          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Annotations <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="<c:url value="/admin/annotation/list" />" >Show all</a></li>
+	            <li><a href="<c:url value="/admin/annotation/add" />" >Add</a></li>
+	          </ul>
+          		
           	</li>
           	<li role="presentation">
           		<a href="<c:url value="/admin/user/list" />" >Users</a>
