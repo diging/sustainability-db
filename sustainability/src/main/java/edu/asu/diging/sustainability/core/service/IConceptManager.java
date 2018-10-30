@@ -12,6 +12,8 @@ public interface IConceptManager {
 
     IConcept getConceptById(String id);
 
-    void updateConceptRoles(IConcept concept, String role);
+    void updateConceptRoles(IConcept concept, String[] roles);
+
+    void resetRoles();
 
 }

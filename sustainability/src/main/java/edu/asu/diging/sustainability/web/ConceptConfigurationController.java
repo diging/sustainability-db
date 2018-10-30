@@ -20,29 +20,29 @@ public class ConceptConfigurationController {
     @Autowired
     private IConceptManager conceptManager;
 
-   @Value("#{'${conceptRoles}'.split(',')}")
-   private List<String> conceptRoles;
-   
-    
+    @Value("#{'${conceptRoles}'.split(',')}")
+    private List<String> conceptRoles;
+
+
     @RequestMapping(value = "/admin/concept/configuration")
     public String showConfiguration(Model model) {
         model.addAttribute("concepts", conceptManager.getTopConcepts());
         model.addAttribute("roles", conceptRoles);
         return "admin/concept/configuration";
     }
-    
+
     @RequestMapping(value = "/admin/concept/updateconfiguration")
     public String updateConfiguration(HttpServletRequest request, Model model) {
-        List<String> requestParameterNames = Collections.list((Enumeration<String>) request.getParameterNames());
+        List<String> requestParameterNames =
+                Collections.list((Enumeration<String>) request.getParameterNames());
         IConcept concept;
-        System.out.println(requestParameterNames);
-        for (int i=0;i<requestParameterNames.size()-1;i++) {
-            System.out.println(requestParameterNames.get(i)+" "+request.getParameterValues(requestParameterNames.get(i)));
-            if((concept=conceptManager.getConceptById(requestParameterNames.get(i))) != null) {
-                if(!concept.getRoles().contains(request.getParameter(requestParameterNames.get(i))))
-                    conceptManager.updateConceptRoles(concept,request.getParameter(requestParameterNames.get(i)));
+        conceptManager.resetRoles();
+        for (int i = 0; i < requestParameterNames.size() - 1; i++) {
+            if ((concept = conceptManager.getConceptById(requestParameterNames.get(i))) != null) {
+                conceptManager.updateConceptRoles(concept,
+                        request.getParameterValues(requestParameterNames.get(i)));
             }
         }
-        return "admin/concept/configuration";
+        return "admin/concept/list";
     }
 }
