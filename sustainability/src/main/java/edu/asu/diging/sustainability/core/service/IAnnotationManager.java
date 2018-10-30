@@ -12,4 +12,6 @@ public interface IAnnotationManager {
 
     Map<String, List<IAnnotation>> findTextsForConcepts(String[] conceptIds);
 
+    List<IAnnotation> listAnnotations();
+
 }

@@ -61,6 +61,9 @@
           		<a href="<c:url value="/admin/concept/list" />" >Concepts</a>
           	</li>
           	<li role="presentation">
+          		<a href="<c:url value="/admin/annotation/list" />" >Annotations</a>
+          	</li>
+          	<li role="presentation">
           		<a href="<c:url value="/admin/user/list" />" >Users</a>
           	</li>
           	<li role="presentation">
