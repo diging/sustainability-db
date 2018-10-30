@@ -1,6 +1,5 @@
 package edu.asu.diging.sustainability.core.service.impl;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
@@ -15,7 +14,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.validation.beanvalidation.OptionalValidatorFactoryBean;
 
 import edu.asu.diging.sustainability.core.data.UserRepository;
 import edu.asu.diging.sustainability.core.factory.IUserFactory;
@@ -23,7 +21,6 @@ import edu.asu.diging.sustainability.core.model.IUser;
 import edu.asu.diging.sustainability.core.model.Role;
 import edu.asu.diging.sustainability.core.model.impl.SustainabilityGrantedAuthority;
 import edu.asu.diging.sustainability.core.model.impl.User;
-import junit.framework.Assert;
 
 public class UserServiceTest {
     
@@ -59,10 +56,10 @@ public class UserServiceTest {
     public void test_loadUserByUsername_admin_success() {
         Mockito.when(userRepository.findById(ADMIN_USERNAME)).thenReturn(Optional.empty());
         UserDetails user = serviceToTest.loadUserByUsername(ADMIN_USERNAME);
-        Assert.assertEquals(ADMIN_USERNAME, user.getUsername());
-        Assert.assertEquals(ADMIN_PW_ENCODED, user.getPassword());
-        Assert.assertEquals(Role.ADMIN, user.getAuthorities().iterator().next().getAuthority());
-        Assert.assertTrue(user.isEnabled());
+        Assertions.assertEquals(ADMIN_USERNAME, user.getUsername());
+        Assertions.assertEquals(ADMIN_PW_ENCODED, user.getPassword());
+        Assertions.assertEquals(Role.ADMIN, user.getAuthorities().iterator().next().getAuthority());
+        Assertions.assertTrue(user.isEnabled());
     }
     
     @Test
@@ -78,7 +75,7 @@ public class UserServiceTest {
         Mockito.when(userRepository.findById("USER")).thenReturn(Optional.of((User)user));
         
         UserDetails foundUser = serviceToTest.loadUserByUsername("USER");
-        Assert.assertEquals(user, foundUser);
+        Assertions.assertEquals(user, foundUser);
     }
     
     @Test 
