@@ -55,7 +55,7 @@ public class ConceptManager implements IConceptManager {
     @Override
     public void updateConceptRoles(IConcept concept, String[] roles) {
         for (String role : roles) {
-            concept.addRole(role);
+            concept.setRoles(role);
         }
         concept = conceptRepo.save((Concept) concept);
         return;
@@ -65,7 +65,7 @@ public class ConceptManager implements IConceptManager {
     public void resetRoles() {
         Iterable<Concept> concepts = conceptRepo.findAll();
         for (Concept c : concepts) {
-            c.setRoles(new ArrayList<String>());
+            c.resetRoles();
         }
         return;
     }

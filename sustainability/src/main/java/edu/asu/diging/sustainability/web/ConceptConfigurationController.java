@@ -39,8 +39,7 @@ public class ConceptConfigurationController {
         conceptManager.resetRoles();
         for (int i = 0; i < requestParameterNames.size() - 1; i++) {
             if ((concept = conceptManager.getConceptById(requestParameterNames.get(i))) != null) {
-                conceptManager.updateConceptRoles(concept,
-                        request.getParameterValues(requestParameterNames.get(i)));
+                conceptManager.updateConceptRoles(concept, request.getParameterValues(requestParameterNames.get(i)));
             }
         }
         return "admin/concept/list";

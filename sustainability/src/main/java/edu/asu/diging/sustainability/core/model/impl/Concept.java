@@ -3,17 +3,39 @@ package edu.asu.diging.sustainability.core.model.impl;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
+import org.springframework.context.annotation.PropertySource;
 import edu.asu.diging.sustainability.core.model.IConcept;
 
 @Entity
+@PropertySource("classpath:config.properties")
 public class Concept implements IConcept {
-
+    
+    public enum Roles {
+        Researcher(false), Practitioner(false);
+        
+        boolean value;
+        
+        Roles(boolean value){
+            this.value = value;
+        }
+        
+        public boolean getValue() {
+            return value;
+        }
+        public void setValue(boolean input) {
+            this.value = input;
+        }
+    };
+    
     @Id
     @GeneratedValue(generator = "concept-id-generator")
     @GenericGenerator(name = "concept-id-generator",
@@ -22,15 +44,17 @@ public class Concept implements IConcept {
     private String id;
     private String name;
     private String uri;
-
-    private ArrayList<String> roles = new ArrayList<String>();
-
+    
     @ManyToOne(targetEntity = Concept.class)
     private IConcept parent;
 
     @OneToMany(targetEntity = Concept.class)
     private List<IConcept> children;
 
+    @ManyToMany(targetEntity = Concept.class)
+    @Enumerated(EnumType.ORDINAL)
+    private List<Roles> roles;
+    
     @Override
     public String getId() {
         return id;
@@ -80,18 +104,20 @@ public class Concept implements IConcept {
     public void setChildren(List<IConcept> children) {
         this.children = children;
     }
-
+    
     @Override
-    public List<String> getRoles() {
-        return roles;
+    public void setRoles(String role) {
+        Roles rolehere = Roles.valueOf(role);
+        System.out.println(rolehere);
+        rolehere.setValue(true);
+        return;
     }
 
     @Override
-    public void addRole(String role) {
-        System.out.println(role);
-        this.roles.add(role);
+    public List<Roles> getRoles() {
+        return this.roles;
     }
-
+    
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -128,10 +154,12 @@ public class Concept implements IConcept {
             return false;
         return true;
     }
-
-    public void setRoles(ArrayList<String> roles) {
-        this.roles = roles;
-
+    
+    @Override
+    public void resetRoles() {
+        for(int i=0; i<this.getRoles().size();i++) {
+            this.roles.get(i).setValue(false);
+        }
     }
 
 }
