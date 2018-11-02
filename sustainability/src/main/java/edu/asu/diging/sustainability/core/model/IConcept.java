@@ -1,7 +1,7 @@
 package edu.asu.diging.sustainability.core.model;
 
 import java.util.List;
-import edu.asu.diging.sustainability.core.model.impl.Concept.Roles;
+import edu.asu.diging.sustainability.core.model.impl.Roles;
 
 public interface IConcept {
 
@@ -25,10 +25,9 @@ public interface IConcept {
 
     String getId();
 
-    void setRoles(String role);
+    void setRoles(List<Roles> roles);
 
     List<Roles> getRoles();
 
-    void resetRoles();
 
 }

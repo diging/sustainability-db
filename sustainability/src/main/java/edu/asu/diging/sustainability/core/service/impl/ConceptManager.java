@@ -54,19 +54,19 @@ public class ConceptManager implements IConceptManager {
 
     @Override
     public void updateConceptRoles(IConcept concept, String[] roles) {
-        for (String role : roles) {
-            concept.setRoles(role);
-        }
-        concept = conceptRepo.save((Concept) concept);
-        return;
+//        for (String role : roles) {
+//            concept.setRoles(role);
+//        }
+//        concept = conceptRepo.save((Concept) concept);
+//        return;
     }
 
     @Override
     public void resetRoles() {
-        Iterable<Concept> concepts = conceptRepo.findAll();
-        for (Concept c : concepts) {
-            c.resetRoles();
-        }
-        return;
+//        Iterable<Concept> concepts = conceptRepo.findAll();
+//        for (Concept c : concepts) {
+//            c.resetRoles();
+//        }
+//        return;
     }
 }

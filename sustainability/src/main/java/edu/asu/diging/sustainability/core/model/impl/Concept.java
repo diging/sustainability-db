@@ -2,11 +2,14 @@ package edu.asu.diging.sustainability.core.model.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -18,23 +21,6 @@ import edu.asu.diging.sustainability.core.model.IConcept;
 @Entity
 @PropertySource("classpath:config.properties")
 public class Concept implements IConcept {
-    
-    public enum Roles {
-        Researcher(false), Practitioner(false);
-        
-        boolean value;
-        
-        Roles(boolean value){
-            this.value = value;
-        }
-        
-        public boolean getValue() {
-            return value;
-        }
-        public void setValue(boolean input) {
-            this.value = input;
-        }
-    };
     
     @Id
     @GeneratedValue(generator = "concept-id-generator")
@@ -51,8 +37,9 @@ public class Concept implements IConcept {
     @OneToMany(targetEntity = Concept.class)
     private List<IConcept> children;
 
-    @ManyToMany(targetEntity = Concept.class)
-    @Enumerated(EnumType.ORDINAL)
+    @ElementCollection(targetClass = Roles.class)
+    @Enumerated(EnumType.STRING)
+    @JoinColumn(name="concept_id")
     private List<Roles> roles;
     
     @Override
@@ -104,20 +91,16 @@ public class Concept implements IConcept {
     public void setChildren(List<IConcept> children) {
         this.children = children;
     }
+
     
-    @Override
-    public void setRoles(String role) {
-        Roles rolehere = Roles.valueOf(role);
-        System.out.println(rolehere);
-        rolehere.setValue(true);
-        return;
+    public List<Roles> getRoles() {
+        return roles;
     }
 
-    @Override
-    public List<Roles> getRoles() {
-        return this.roles;
+    public void setRoles(List<Roles> roles) {
+        this.roles = roles;
     }
-    
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -153,13 +136,6 @@ public class Concept implements IConcept {
         } else if (!uri.equals(other.uri))
             return false;
         return true;
-    }
-    
-    @Override
-    public void resetRoles() {
-        for(int i=0; i<this.getRoles().size();i++) {
-            this.roles.get(i).setValue(false);
-        }
     }
 
 }

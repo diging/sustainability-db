@@ -9,7 +9,7 @@
 <link href="<c:url value="/resources/bootstrap/css/admin/admin.css" />" rel="stylesheet">
 
 <c:url value="/admin/concept/updateconfiguration" var="updateConfigUrl" />
-<form:form action="${updateConfigUrl}" method="POST">
+<form:form modelAttribute="roles" action="${updateConfigUrl}" method="POST">
 <div class="panel panel-default">
   <c:forEach items="${concepts}" var="concept">
     <div class="panel-heading">
@@ -21,11 +21,7 @@
         <div class="panel-body"">
 	      <li class="list-group-item">
 	        ${child.name}
-	        <c:forEach items="${roles}" var="role">
-	          <label class="switch checkbox-switch">
-	            <input type="checkbox" class="default" name="${child.id}" value="${role}"> ${role}
-	          </label>
-	        </c:forEach>
+	        <form:checkboxes path="roles.roles" items="${roles}"/>
 	      </li>
         </div>
       </c:forEach>
@@ -37,5 +33,3 @@
 <button type="submit" class="btn btn-default">Update Configuration</button>
 </div>
 </form:form>
-
-
