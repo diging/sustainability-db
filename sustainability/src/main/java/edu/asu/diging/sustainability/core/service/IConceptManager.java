@@ -3,6 +3,7 @@ package edu.asu.diging.sustainability.core.service;
 import java.util.List;
 
 import edu.asu.diging.sustainability.core.model.IConcept;
+import edu.asu.diging.sustainability.core.model.impl.Roles;
 
 public interface IConceptManager {
 
@@ -12,8 +13,6 @@ public interface IConceptManager {
 
     IConcept getConceptById(String id);
 
-    void updateConceptRoles(IConcept concept, String[] roles);
-
-    void resetRoles();
+    void updateConceptRoles(String conceptId, List<Roles> roles);
 
 }

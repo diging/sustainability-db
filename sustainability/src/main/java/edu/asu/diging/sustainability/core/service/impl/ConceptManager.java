@@ -9,6 +9,7 @@ import edu.asu.diging.sustainability.core.data.ConceptRepository;
 import edu.asu.diging.sustainability.core.model.IConcept;
 import edu.asu.diging.sustainability.core.model.impl.Concept;
 import edu.asu.diging.sustainability.core.service.IConceptManager;
+import edu.asu.diging.sustainability.core.model.impl.Roles;
 
 @Service
 @Transactional
@@ -53,20 +54,11 @@ public class ConceptManager implements IConceptManager {
     }
 
     @Override
-    public void updateConceptRoles(IConcept concept, String[] roles) {
-//        for (String role : roles) {
-//            concept.setRoles(role);
-//        }
-//        concept = conceptRepo.save((Concept) concept);
-//        return;
+    public void updateConceptRoles(String conceptId, List<Roles> roles) {
+        IConcept concept = getConceptById(conceptId);
+        concept.setRoles(roles);
+        concept = conceptRepo.save((Concept) concept);
+        return;
     }
 
-    @Override
-    public void resetRoles() {
-//        Iterable<Concept> concepts = conceptRepo.findAll();
-//        for (Concept c : concepts) {
-//            c.resetRoles();
-//        }
-//        return;
-    }
 }

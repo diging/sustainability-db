@@ -1,29 +1,19 @@
 package edu.asu.diging.sustainability.web;
 
 import java.util.List;
-import edu.asu.diging.sustainability.core.model.IConcept;
-import edu.asu.diging.sustainability.core.model.impl.Roles;
+
 public class ConceptConfigurationForm {
 
     
-    private IConcept concept;
+    private List<ConceptForm> concepts;
+
+    public List<ConceptForm> getConcepts() {
+        return concepts;
+    }
+
+    public void setConcepts(List<ConceptForm> concepts) {
+        this.concepts = concepts;
+    }
     
-    public IConcept getConcept() {
-        return concept;
-    }
-
-    public void setConcept(IConcept concept) {
-        this.concept = concept;
-    }
-
-    private List<String> roles;
     
-    public List<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
-    }
-
 }
