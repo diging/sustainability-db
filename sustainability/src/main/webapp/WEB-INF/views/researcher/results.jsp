@@ -17,6 +17,6 @@
 
 <ul class="list-group">
 	<c:forEach items="${results}" var="entry">
-		<li class="list-group-item">${entry.key}</li>
+		<li class="list-group-item"><a href="<c:url value="/text?uri=${entry.key}" />">${entry.key}</a></li>
 	</c:forEach>
 </ul>

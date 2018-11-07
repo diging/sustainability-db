@@ -47,5 +47,8 @@
 		<put-attribute name="content" value="/WEB-INF/views/researcher/results.jsp" />	
 	</definition>
 	
+	<definition name="text" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/text.jsp" />	
+	</definition>
 	
 </tiles-definitions>
