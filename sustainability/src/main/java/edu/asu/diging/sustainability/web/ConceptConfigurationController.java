@@ -16,6 +16,9 @@ import edu.asu.diging.sustainability.core.model.IConcept;
 import edu.asu.diging.sustainability.core.model.impl.Roles;
 import edu.asu.diging.sustainability.core.service.IConceptManager;
 
+/**
+ * @author Namratha Used to configure accessibility to Concepts for different roles.
+ */
 @Controller
 @PropertySource("classpath:config.properties")
 public class ConceptConfigurationController {
@@ -23,25 +26,33 @@ public class ConceptConfigurationController {
     @Autowired
     private IConceptManager conceptManager;
 
-    @RequestMapping(value = "/admin/concept/configuration", method=RequestMethod.GET)
+    /**
+     * 
+     * To display current configuration.
+     */
+    @RequestMapping(value = "/admin/concept/configuration", method = RequestMethod.GET)
     public String showConfiguration(Model model) {
-        List<IConcept> allConcepts = new ArrayList<IConcept>();
-        for(IConcept con: conceptManager.getTopConcepts())
-            allConcepts.addAll(con.getChildren());
-        model.addAttribute("concepts", allConcepts);
-        model.addAttribute("roles",Roles.values());
+        List<IConcept> childConcepts = new ArrayList<IConcept>();
+        for (IConcept concept : conceptManager.getTopConcepts()) {
+            childConcepts.addAll(concept.getChildren());
+        }
+        model.addAttribute("concepts", childConcepts);
+        model.addAttribute("roles", Roles.values());
         model.addAttribute("form", new ConceptConfigurationForm());
         return "admin/concept/configuration";
     }
 
-    @RequestMapping(value = "/admin/concept/configuration", method=RequestMethod.POST)
-    public String updateConfiguration(@Validated @ModelAttribute("form") ConceptConfigurationForm conceptConfigurationForm, HttpServletRequest request, Model model, BindingResult results) {
-        List<ConceptForm> conc = conceptConfigurationForm.getConcepts();
-        conc.size();
-        for(ConceptForm con: conc)
-        {
-            System.out.println(con.getRoles() + con.getId());
-            conceptManager.updateConceptRoles(con.getId(), con.getRoles());
+    /**
+     * To store the updated configuration.
+     */
+    @RequestMapping(value = "/admin/concept/configuration", method = RequestMethod.POST)
+    public String updateConfiguration(
+            @ModelAttribute("form") @Validated ConceptConfigurationForm conceptConfigurationForm,
+            BindingResult results, Model model, HttpServletRequest request) {
+        List<ConceptForm> conceptList = conceptConfigurationForm.getConcepts();
+        conceptList.size();
+        for (ConceptForm concept : conceptList) {
+            conceptManager.configureConceptRoles(concept.getId(), concept.getRoles());
         }
         return "admin/concept/list";
     }

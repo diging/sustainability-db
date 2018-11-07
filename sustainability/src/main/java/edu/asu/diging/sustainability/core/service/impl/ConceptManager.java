@@ -53,11 +53,14 @@ public class ConceptManager implements IConceptManager {
 
     }
 
+    /**
+     * Input concept ID and List of Roles to store access rights for Concepts.
+     */
     @Override
-    public void updateConceptRoles(String conceptId, List<Roles> roles) {
+    public void configureConceptRoles(String conceptId, List<Roles> roles) {
         IConcept concept = getConceptById(conceptId);
         concept.setRoles(roles);
-        concept = conceptRepo.save((Concept) concept);
+        conceptRepo.save((Concept) concept);
         return;
     }
 

@@ -13,6 +13,6 @@ public interface IConceptManager {
 
     IConcept getConceptById(String id);
 
-    void updateConceptRoles(String conceptId, List<Roles> roles);
+    void configureConceptRoles(String conceptId, List<Roles> roles);
 
 }

@@ -18,7 +18,7 @@ import edu.asu.diging.sustainability.core.model.IConcept;
 @Entity
 @PropertySource("classpath:config.properties")
 public class Concept implements IConcept {
-    
+
     @Id
     @GeneratedValue(generator = "concept-id-generator")
     @GenericGenerator(name = "concept-id-generator",
@@ -27,7 +27,7 @@ public class Concept implements IConcept {
     private String id;
     private String name;
     private String uri;
-    
+
     @ManyToOne(targetEntity = Concept.class)
     private IConcept parent;
 
@@ -36,9 +36,9 @@ public class Concept implements IConcept {
 
     @ElementCollection(targetClass = Roles.class)
     @Enumerated(EnumType.STRING)
-    @JoinColumn(name="concept_id")
+    @JoinColumn(name = "concept_id")
     private List<Roles> roles;
-    
+
     @Override
     public String getId() {
         return id;
@@ -89,7 +89,7 @@ public class Concept implements IConcept {
         this.children = children;
     }
 
-    
+
     public List<Roles> getRoles() {
         return roles;
     }
