@@ -39,6 +39,10 @@
 		<put-attribute name="content" value="/WEB-INF/views/admin/annotation/list.jsp" />	
 	</definition>
 	
+	<definition name="admin/text/config" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/admin/text/config.jsp" />	
+	</definition>
+	
 	<!-- Researcher perspective -->
 	<definition name="perspective/researcher" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/researcher/main.jsp" />	

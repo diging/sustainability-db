@@ -1,8 +1,6 @@
 package edu.asu.diging.sustainability.web;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.asu.diging.sustainability.core.model.IAnnotation;
 import edu.asu.diging.sustainability.core.model.IConcept;
+import edu.asu.diging.sustainability.core.model.config.IAnnotationConfiguration;
+import edu.asu.diging.sustainability.core.service.IAnnotationConfigurationManager;
 import edu.asu.diging.sustainability.core.service.IAnnotationManager;
 import edu.asu.diging.sustainability.core.service.IResourceManager;
 
@@ -26,6 +26,9 @@ public class RetrieveTextController {
     
     @Autowired
     private IAnnotationManager annotationManager;
+    
+    @Autowired
+    private IAnnotationConfigurationManager configManager;
 
     @RequestMapping(value="/text")
     public String get(Model model, @RequestParam("uri") String uri) {
@@ -46,6 +49,11 @@ public class RetrieveTextController {
            
         });
         model.addAttribute("annotations", annotationsByParentConcepts);
+        
+        List<IAnnotationConfiguration> configs = configManager.findAll();
+        Map<String, IAnnotationConfiguration> configMap = new HashMap<>();
+        configs.forEach(c -> configMap.put(c.getConcept().getId(), c));
+        model.addAttribute("configs", configMap);
         return "text";
         
     }
