@@ -29,5 +29,4 @@ public interface IConcept {
 
     List<Roles> getRoles();
 
-
 }

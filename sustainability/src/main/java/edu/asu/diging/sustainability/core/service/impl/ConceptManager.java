@@ -52,7 +52,6 @@ public class ConceptManager implements IConceptManager {
     @Override
     public IConcept getConceptById(String id) {
         return (conceptRepo.findById(id)).get();
-
     }
 
     /**

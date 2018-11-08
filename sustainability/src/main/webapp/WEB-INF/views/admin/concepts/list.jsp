@@ -5,7 +5,9 @@
 
 <a href="configuration" class="btn btn-primary a-btn-slide-text">
   <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-  <span><strong>Edit Configuration</strong></span>            
+  <span>
+    <strong>Edit Configuration</strong>
+  </span>            
 </a>
 
 <div id="tree"></div>
