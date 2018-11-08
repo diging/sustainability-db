@@ -2,9 +2,11 @@ package edu.asu.diging.sustainability.core.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import edu.asu.diging.sustainability.core.data.ConceptRepository;
 import edu.asu.diging.sustainability.core.model.IConcept;
 import edu.asu.diging.sustainability.core.model.impl.Concept;
@@ -63,5 +65,4 @@ public class ConceptManager implements IConceptManager {
         conceptRepo.save((Concept) concept);
         return;
     }
-
 }
