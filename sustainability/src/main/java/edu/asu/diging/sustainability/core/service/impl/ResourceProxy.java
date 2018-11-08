@@ -78,4 +78,12 @@ public class ResourceProxy implements IResource {
         return null;
     }
 
+    @Override
+    public List<IMetadatum> getOthers() {
+        if (proxiedResource != null) {
+            return proxiedResource.getOthers();
+        }
+        return null;
+    }
+
 }

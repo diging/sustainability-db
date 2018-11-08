@@ -46,6 +46,13 @@ public class AnnotationManager implements IAnnotationManager {
     @Autowired
     private IResourceManager resourceManager;
 
+    @Override
+    public List<IAnnotation> listAnnotations() {
+        List<IAnnotation> annotations = new ArrayList<>();
+        annotationRepo.findAll().forEach(a -> annotations.add(a));
+        return annotations;
+    }
+    
     /*
      * (non-Javadoc)
      * 
@@ -110,6 +117,25 @@ public class AnnotationManager implements IAnnotationManager {
     }
 
     @Override
+    public List<IAnnotation> getAnnotationsForText(String uri) {
+        return annotationRepo.findByUri(uri);
+    }
+    
+    @Override
+    public Map<IConcept, List<IAnnotation>> getAnnotationsForTextByConceptHierachy(String uri) {
+        List<IAnnotation> annotations = getAnnotationsForText(uri);
+        Map<IConcept, List<IAnnotation>> byParentConcept = new HashMap<>();
+        annotations.forEach(a -> {
+            IConcept parent = a.getConcept().getParent();
+            if (byParentConcept.get(parent) == null) {
+                byParentConcept.put(parent, new ArrayList<>());
+            }
+            byParentConcept.get(parent).add(a);
+        });
+        return byParentConcept;
+    }
+    
+    @Override
     public Map<String, List<IAnnotation>> findTextsForConcepts(String[] conceptIds) {
         Map<String, List<IAnnotation>> results = new HashMap<>();
         Map<String, Set<String>> textsByConcepts = new HashMap<>();
@@ -138,12 +164,5 @@ public class AnnotationManager implements IAnnotationManager {
 
         toBeRemoved.forEach(r -> results.remove(r));
         return results;
-    }
-    
-    @Override
-    public List<IAnnotation> listAnnotations() {
-        List<IAnnotation> annotations = new ArrayList<>();
-        annotationRepo.findAll().forEach(a -> annotations.add(a));
-        return annotations;
     }
 }

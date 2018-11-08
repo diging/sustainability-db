@@ -1,6 +1,8 @@
 package edu.asu.diging.sustainability.core.model.impl;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.CollectionTable;
@@ -23,6 +25,8 @@ import edu.asu.diging.sustainability.core.model.IResource;
  */
 @Entity
 public class Resource implements IResource {
+    
+    public final static List<String> EXCLUDES = Arrays.asList(new String[] {TITLE_PREDICATE, YEAR_PREDICATE, PROVENANCE_PREDICATE});
 
     @Id
     private String uri;
@@ -53,6 +57,17 @@ public class Resource implements IResource {
             }
         }
         return null;
+    }
+    
+    @Override
+    public List<IMetadatum> getOthers() {
+        List<IMetadatum> others = new ArrayList<>();
+        metadata.forEach(m -> {
+            if (!EXCLUDES.contains(m.getPredicate())) {
+                others.add(m);
+            }
+        });
+        return others;
     }
 
     /* (non-Javadoc)
