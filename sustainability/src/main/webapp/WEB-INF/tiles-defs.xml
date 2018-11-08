@@ -30,23 +30,18 @@
 	<definition name="admin/concept/list" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/admin/concepts/list.jsp" />	
 	</definition>
-	
-<<<<<<< HEAD
+
 	<definition name="admin/user/list" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/admin/user/list.jsp" />	
 	</definition>
 	
 	<definition name="admin/annotation/list" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/admin/annotation/list.jsp" />	
-=======
-	<definition name="admin/concept/configuration" extends="base.definition">
-		<put-attribute name="content" value="/WEB-INF/views/admin/concepts/configuration.jsp" />	
->>>>>>> [SUS-1] Adding configuration file for concept access priveleges.
 	</definition>
 	
-	<definition name="admin/concept/updateconfiguration" extends="base.definition">
+	<definition name="admin/concept/configuration" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/admin/concepts/configuration.jsp" />	
-	</definition>
+    </definition>
 	
 	<!-- Researcher perspective -->
 	<definition name="perspective/researcher" extends="base.definition">
@@ -55,6 +50,5 @@
 	<definition name="perspective/researcher/search" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/researcher/results.jsp" />	
 	</definition>
-	
 	
 </tiles-definitions>
