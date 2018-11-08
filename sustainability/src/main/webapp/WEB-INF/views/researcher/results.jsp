@@ -15,6 +15,29 @@
 	</c:forEach>
 </p>
 
+<%-- <ul class="list-group">
+	<c:forEach items="${resource}" var="entry">
+		<c:if test="${empty entry.updatedOn}">
+		<center>
+			<i class="fa fa-spinner fa-pulse"></i> Please wait while we are loading the text for you.
+		</center>
+		</c:if>
+		<c:if test="${not empty entry.updatedOn}">
+			<li class="list-group-item"><a href="<c:url value="/text?uri=${entry.uri}"/>">${entry.title} - ${entry.year} </a></li>
+		</c:if>
+	</c:forEach>
+</ul>
+<script>
+// reload page after three seconds
+$(document).ready(function() {
+	setTimeout(function() 
+	  {
+		location.reload(true);
+	  }, 3000);
+});
+</script>
+ --%>
+ 
 <ul class="list-group">
 	<c:forEach items="${results}" var="entry">
 		<li class="list-group-item"><a href="<c:url value="/text?uri=${entry.key}" />">${entry.key}</a></li>
