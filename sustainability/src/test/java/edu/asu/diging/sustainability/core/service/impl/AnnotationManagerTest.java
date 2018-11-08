@@ -17,7 +17,6 @@ import edu.asu.diging.sustainability.core.model.IAnnotation;
 import edu.asu.diging.sustainability.core.model.IConcept;
 import edu.asu.diging.sustainability.core.model.impl.Annotation;
 import edu.asu.diging.sustainability.core.model.impl.Concept;
-import edu.asu.diging.sustainability.core.service.IAnnotationManager;
 
 public class AnnotationManagerTest {
 
@@ -25,7 +24,7 @@ public class AnnotationManagerTest {
     private AnnotationRepository annotationRepo;
     
     @InjectMocks
-    private IAnnotationManager managerToTest;
+    private AnnotationManager managerToTest;
     
     @BeforeEach
     public void setUp() {
