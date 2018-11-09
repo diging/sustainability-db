@@ -20,7 +20,7 @@ import edu.asu.diging.sustainability.core.model.impl.Roles;
 import edu.asu.diging.sustainability.core.service.IConceptManager;
 
 /**
- * @author Namratha 
+ * @author namrathaov 
  * Used to configure accessibility to Concepts for different roles.
  */
 @Controller
