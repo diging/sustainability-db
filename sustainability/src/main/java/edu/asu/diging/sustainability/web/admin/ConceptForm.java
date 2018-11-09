@@ -4,7 +4,7 @@ import java.util.List;
 import edu.asu.diging.sustainability.core.model.impl.SearchCategory;
 
 /**
- * @author Namratha 
+ * @author namrathaov 
  * Concept replica for the edit configuration form to use in storing configuration.
  */
 public class ConceptForm {

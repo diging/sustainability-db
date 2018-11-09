@@ -3,7 +3,7 @@ package edu.asu.diging.sustainability.web.admin;
 import java.util.List;
 
 /**
- * @author Namratha 
+ * @author namrathaov 
  * Backing form for the edit configuration page.
  */
 public class ConceptConfigurationForm {
