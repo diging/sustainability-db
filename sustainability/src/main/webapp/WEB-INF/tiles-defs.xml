@@ -43,12 +43,12 @@
 		<put-attribute name="content" value="/WEB-INF/views/admin/concepts/configuration.jsp" />	
     </definition>
 	
-	<!-- Researcher perspective -->
-	<definition name="perspective/researcher" extends="base.definition">
-		<put-attribute name="content" value="/WEB-INF/views/researcher/main.jsp" />	
+	<!-- Search perspective -->
+	<definition name="perspective/concepts" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/search/main.jsp" />	
 	</definition>
 	<definition name="perspective/researcher/search" extends="base.definition">
-		<put-attribute name="content" value="/WEB-INF/views/researcher/results.jsp" />	
+		<put-attribute name="content" value="/WEB-INF/views/search/results.jsp" />	
 	</definition>
 	
 </tiles-definitions>

@@ -23,7 +23,7 @@
 <div class="panel panel-default" style="background-color: #75c175;">
   <div class="panel-body" >
   <h1 class="text-center" style="min-height: 200px; line-height:200px;">
-    Practitioner
+    <a href="<c:url value="/perspective/practitioner" />">Practitioner</a>
     </h1>
   </div>
 </div>

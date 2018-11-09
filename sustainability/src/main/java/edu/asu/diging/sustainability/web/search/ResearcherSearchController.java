@@ -1,4 +1,4 @@
-package edu.asu.diging.sustainability.web.researcher;
+package edu.asu.diging.sustainability.web.search;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class ResearcherSearchController {
     @Autowired
     private ConceptRepository conceptRepo;
 
-    @RequestMapping(value="/perspective/researcher/search", method=RequestMethod.POST)
+    @RequestMapping(value="/perspective/search", method=RequestMethod.POST)
     public String search(Model model, @RequestParam("selectedConcepts") String[] selectedConcepts) {
         model.addAttribute("results", annotationManager.findTextsForConcepts(selectedConcepts));
         
