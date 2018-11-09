@@ -1,0 +1,11 @@
+.checkbox-switch {
+  float:right;
+  padding-right: 4px;
+}
+
+.panel-body, .panel-heading {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+}

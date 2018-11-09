@@ -14,15 +14,23 @@
 
 	<mvc:annotation-driven />
 	<context:component-scan base-package="edu.asu.diging.sustainability" />
-	
+
+	<context:component-scan
+		base-package="edu.asu.diging.sustainability" />
+
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="classpath:locale/messages" />
 		<property name="fallbackToSystemLocale" value="false" />
 	</bean>
-	
+
 	<aop:aspectj-autoproxy proxy-target-class="true" />
 
 	<util:properties id="usersFile" location="classpath:user.properties"/>
-	
+
+	<util:properties id="propertyConfigurer"
+		location="classpath:config.properties " />
+	<context:property-placeholder
+		properties-ref="propertyConfigurer" />
+
 </beans>

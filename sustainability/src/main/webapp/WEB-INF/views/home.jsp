@@ -23,7 +23,7 @@
 <div class="panel panel-default" style="background-color: #75c175;">
   <div class="panel-body" >
   <h1 class="text-center" style="min-height: 200px; line-height:100px;">
-    Areas of Interest
+    <a href="<c:url value="/perspective/practitioner" />">Areas of Interest</a>
     </h1>
   </div>
 </div>
