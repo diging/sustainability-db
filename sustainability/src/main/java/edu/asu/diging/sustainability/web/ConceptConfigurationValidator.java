@@ -5,7 +5,7 @@ import org.springframework.validation.Validator;
 import edu.asu.diging.sustainability.core.model.impl.Roles;
 
 /**
- * @author Namratha 
+ * @author namrathaov 
  * Validator for the backing form in edit concept configuration page.
  */
 public class ConceptConfigurationValidator implements Validator {
