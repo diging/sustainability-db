@@ -30,7 +30,7 @@
 	<definition name="admin/concept/list" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/admin/concepts/list.jsp" />	
 	</definition>
-	
+
 	<definition name="admin/user/list" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/admin/user/list.jsp" />	
 	</definition>
@@ -39,16 +39,30 @@
 		<put-attribute name="content" value="/WEB-INF/views/admin/annotation/list.jsp" />	
 	</definition>
 	
+	<definition name="admin/concept/configuration" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/admin/concepts/configuration.jsp" />	
+    </definition>
+    
+    <definition name="admin/text/config" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/admin/text/config.jsp" />	
+	</definition>
+	
+	<!-- Search perspective -->
+	<definition name="perspective/concepts" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/search/main.jsp" />	
+	</definition>
+
 	<!-- Researcher perspective -->
 	<definition name="perspective/researcher" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/researcher/main.jsp" />	
 	</definition>
 	<definition name="perspective/researcher/search" extends="base.definition">
-		<put-attribute name="content" value="/WEB-INF/views/researcher/results.jsp" />	
+		<put-attribute name="content" value="/WEB-INF/views/search/results.jsp" />	
 	</definition>
 	
+
 	<definition name="text" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/text.jsp" />	
 	</definition>
-	
+
 </tiles-definitions>

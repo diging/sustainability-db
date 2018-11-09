@@ -11,6 +11,7 @@ import edu.asu.diging.sustainability.core.data.ConceptRepository;
 import edu.asu.diging.sustainability.core.model.IConcept;
 import edu.asu.diging.sustainability.core.model.impl.Concept;
 import edu.asu.diging.sustainability.core.service.IConceptManager;
+import edu.asu.diging.sustainability.core.model.impl.SearchCategory;
 
 @Service
 @Transactional
@@ -19,7 +20,9 @@ public class ConceptManager implements IConceptManager {
     @Autowired
     private ConceptRepository conceptRepo;
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see edu.asu.diging.sustainability.core.service.impl.IConceptManager#getConcepts()
      */
     @Override
@@ -33,7 +36,7 @@ public class ConceptManager implements IConceptManager {
         }
         return allConcepts;
     }
-    
+
     @Override
     public List<IConcept> getTopConcepts() {
         Iterable<Concept> concepts = conceptRepo.findByParentIsNull();
@@ -44,5 +47,23 @@ public class ConceptManager implements IConceptManager {
             allConcepts.add(c);
         }
         return allConcepts;
+    }
+
+    @Override
+    public IConcept getConceptById(String id) {
+        return (conceptRepo.findById(id)).get();
+    }
+
+    /**
+     * Store the given search categories with the provided concept.
+     * 
+     * @param conceptId The id of the concept for which the search categories are provided.
+     * @param searchCategories a list of roles.
+     */
+    @Override
+    public void storeConceptSearchCategories(String conceptId, List<SearchCategory> searchCategories) {
+        IConcept concept = getConceptById(conceptId);
+        concept.setSearchCategories(searchCategories);
+        conceptRepo.save((Concept) concept);
     }
 }

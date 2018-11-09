@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/font-awesome-4.6.3/css/font-awesome.min.css" />" />
     <link href='https://fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet' type='text/css'>
     
-    <title>Database for Sustainability Solutions</title>
+    <title>Sustainability Solution Database</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
@@ -65,6 +65,12 @@
 	          </ul>
           		
           	</li>
+          	<li class="dropdown">
+          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Texts <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="<c:url value="/admin/text/config" />" >Configure</a></li>
+	          </ul>
+          	</li>
           	<li role="presentation">
           		<a href="<c:url value="/admin/user/list" />" >Users</a>
           	</li>
@@ -79,7 +85,7 @@
          
         </nav>
         
-        <h1><a class="appName" href="<c:url value="/" />">Database for Sustainability Solutions</a></h1>  
+        <h1><a class="appName" href="<c:url value="/" />">Sustainability Solution Database</a></h1>  
       </div>
       
       

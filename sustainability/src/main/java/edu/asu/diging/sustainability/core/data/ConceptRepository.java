@@ -11,8 +11,8 @@ import edu.asu.diging.sustainability.core.model.impl.Concept;
 public interface ConceptRepository extends PagingAndSortingRepository<Concept, String> {
 
     List<Concept> findByUri(String uri);
-    
+
     List<Concept> findByName(String name);
-    
+
     List<Concept> findByParentIsNull();
 }
