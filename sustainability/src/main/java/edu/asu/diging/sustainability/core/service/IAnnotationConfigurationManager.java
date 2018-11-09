@@ -12,4 +12,6 @@ public interface IAnnotationConfigurationManager {
 
     void storeConfigurations(Collection<AnnotationConfig> configs);
 
+    IAnnotationConfiguration getConfiguration(String conceptId);
+
 }

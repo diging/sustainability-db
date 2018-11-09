@@ -62,6 +62,11 @@ public class AnnotationConfigurationManager implements IAnnotationConfigurationM
         };
     }
     
+    @Override
+    public IAnnotationConfiguration getConfiguration(String conceptId) {
+        return (IAnnotationConfiguration) repo.findByConceptId(conceptId);
+    }
+    
     private void setValues(AnnotationConfiguration configuration, AnnotationConfig config) {
         configuration.setDisplayType(config.getDisplayType());
         configuration.setSection(config.getSection());

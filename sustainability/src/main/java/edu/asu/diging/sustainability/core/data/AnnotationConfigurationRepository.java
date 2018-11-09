@@ -6,4 +6,5 @@ import edu.asu.diging.sustainability.core.model.config.impl.AnnotationConfigurat
 
 public interface AnnotationConfigurationRepository extends PagingAndSortingRepository<AnnotationConfiguration, String> {
 
+    public AnnotationConfiguration findByConceptId(String conceptId);
 }

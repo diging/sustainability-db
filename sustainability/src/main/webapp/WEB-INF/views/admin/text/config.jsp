@@ -26,12 +26,12 @@
 		      	<form:select class="form-control" path="annotationConfigs[${status.index}].displayType" items="${displayTypes}" />
 		    </div>
 		</div>
-		<div class="form-group">
+		<!-- <div class="form-group">
 		    <label for="section" class="col-sm-2 control-label text-left">Sort order</label>
 		    <div class="col-sm-10">
 		      	<form:input class="form-control" type="number" path="annotationConfigs[${status.index}].sortOrder" />
 		    </div>
-		</div>
+		</div> -->
 	  </div>
 	</div>
 	</c:forEach>
