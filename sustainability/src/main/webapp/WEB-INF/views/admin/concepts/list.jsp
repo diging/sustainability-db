@@ -3,12 +3,12 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
+<p>
 <a href="configuration" class="btn btn-primary a-btn-slide-text">
   <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-  <span>
-    <strong>Edit Configuration</strong>
-  </span>            
+  Edit Configuration 
 </a>
+</p>
 
 <div id="tree"></div>
 
@@ -29,10 +29,11 @@
 				if (status === 'error' || !xhr.responseText) {
 					console.log(error);
 				} else {
-					$('#tree').treeview({ 
+					$('#tree').treeview({
 						data: JSON.parse(xhr.responseText),
 						expandIcon: "fa fa-caret-right",
 						collapseIcon: "fa fa-caret-down",
+						showTags: true,
 					});
 				}
 			}

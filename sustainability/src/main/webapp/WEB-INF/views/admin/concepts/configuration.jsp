@@ -16,20 +16,20 @@
 <div class="panel panel-default">
   	<div>
       <c:forEach items="${concepts}" var="con" varStatus="vs">
-        <div class="panel-body"">
+        <div class="panel-body">
 	      <li class="list-group-item">
 	        <form:hidden path="concepts[${vs.index}].id" value="${con.id}"/>
 	        ${con.name}
 	        <div class="checkbox-switch">
-	          <c:forEach items="${roles}" var="role" >
-	            <spring:eval var="containsValue" expression="con.roles.contains(role)" />
+	          <c:forEach items="${categories}" var="category" >
+	            <spring:eval var="containsValue" expression="con.searchCategories.contains(category)" />
 	            <c:if test="${containsValue eq true}">
-		          <form:checkbox path="concepts[${vs.index}].roles"  cssErrorClass="invalid" value="${role}" checked="checked" />
+		          <form:checkbox path="concepts[${vs.index}].searchCategories"  cssErrorClass="invalid" value="${category}" checked="checked" />
 		        </c:if>
 		        <c:if test="${containsValue eq false}">
-		          <form:checkbox path="concepts[${vs.index}].roles" cssErrorClass="invalid" value="${role}"/>
+		          <form:checkbox path="concepts[${vs.index}].searchCategories" cssErrorClass="invalid" value="${category}"/>
 		        </c:if>
-		        <spring:eval expression="@propertyConfigurer.getProperty('concept_role_${fn:toLowerCase(role)}')" />
+		        <spring:eval expression="@propertyConfigurer.getProperty('concept_role_${fn:toLowerCase(category)}')" />
 	          </c:forEach>
 	        </div>
 	      </li>

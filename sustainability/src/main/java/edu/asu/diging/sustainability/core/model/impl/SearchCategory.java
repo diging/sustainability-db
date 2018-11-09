@@ -5,7 +5,7 @@ package edu.asu.diging.sustainability.core.model.impl;
  * @author Namratha
  *
  */
-public enum Roles {
+public enum SearchCategory {
     RESEARCHER, PRACTITIONER;
 
 };

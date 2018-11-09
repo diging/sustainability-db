@@ -1,6 +1,8 @@
-package edu.asu.diging.sustainability.web;
+package edu.asu.diging.sustainability.web.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,7 +17,11 @@ import edu.asu.diging.sustainability.core.model.IConcept;
 import edu.asu.diging.sustainability.core.service.IConceptManager;
 
 @Controller
+@PropertySource("classpath:config.properties")
 public class ListConceptController {
+    
+    @Autowired
+    private Environment env;
 
     @Autowired
     private IConceptManager conceptManager;
@@ -42,11 +48,16 @@ public class ListConceptController {
     private void addNode(IConcept concept, ArrayNode conceptArray, ObjectMapper mapper) {
         ObjectNode conceptNode = mapper.createObjectNode();
         conceptNode.put("text", concept.getName());
+        ArrayNode tags = mapper.createArrayNode();
+        concept.getSearchCategories().forEach(cat -> {
+            tags.add(env.getProperty("concept_role_" + cat.name().toLowerCase()));
+        });
+        conceptNode.set("tags", tags);
         conceptArray.add(conceptNode);
 
         if (concept.getChildren() != null) {
             ArrayNode children = mapper.createArrayNode();
-            conceptNode.put("nodes", children);
+            conceptNode.set("nodes", children);
             for (IConcept child : concept.getChildren()) {
                 addNode(child, children, mapper);
             }

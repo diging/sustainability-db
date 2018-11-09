@@ -1,4 +1,4 @@
-package edu.asu.diging.sustainability.web;
+package edu.asu.diging.sustainability.web.admin;
 
 import java.util.List;
 

@@ -3,7 +3,7 @@ package edu.asu.diging.sustainability.core.service;
 import java.util.List;
 
 import edu.asu.diging.sustainability.core.model.IConcept;
-import edu.asu.diging.sustainability.core.model.impl.Roles;
+import edu.asu.diging.sustainability.core.model.impl.SearchCategory;
 
 public interface IConceptManager {
 
@@ -13,6 +13,6 @@ public interface IConceptManager {
 
     IConcept getConceptById(String id);
 
-    void configureConceptRoles(String conceptId, List<Roles> roles);
+    void storeConceptSearchCategories(String conceptId, List<SearchCategory> roles);
 
 }

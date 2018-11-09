@@ -34,10 +34,10 @@ public class Concept implements IConcept {
     @OneToMany(targetEntity = Concept.class)
     private List<IConcept> children;
 
-    @ElementCollection(targetClass = Roles.class)
+    @ElementCollection(targetClass = SearchCategory.class)
     @Enumerated(EnumType.STRING)
     @JoinColumn(name = "concept_id")
-    private List<Roles> roles;
+    private List<SearchCategory> searchCategories;
 
     @Override
     public String getId() {
@@ -90,12 +90,13 @@ public class Concept implements IConcept {
     }
 
 
-    public List<Roles> getRoles() {
-        return roles;
+
+    public List<SearchCategory> getSearchCategories() {
+        return searchCategories;
     }
 
-    public void setRoles(List<Roles> roles) {
-        this.roles = roles;
+    public void setSearchCategories(List<SearchCategory> searchCategories) {
+        this.searchCategories = searchCategories;
     }
 
     @Override

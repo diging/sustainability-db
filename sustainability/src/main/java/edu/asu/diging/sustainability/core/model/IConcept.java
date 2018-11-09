@@ -1,7 +1,7 @@
 package edu.asu.diging.sustainability.core.model;
 
 import java.util.List;
-import edu.asu.diging.sustainability.core.model.impl.Roles;
+import edu.asu.diging.sustainability.core.model.impl.SearchCategory;
 
 public interface IConcept {
 
@@ -25,8 +25,8 @@ public interface IConcept {
 
     String getId();
 
-    void setRoles(List<Roles> roles);
+    void setSearchCategories(List<SearchCategory> roles);
 
-    List<Roles> getRoles();
+    List<SearchCategory> getSearchCategories();
 
 }
