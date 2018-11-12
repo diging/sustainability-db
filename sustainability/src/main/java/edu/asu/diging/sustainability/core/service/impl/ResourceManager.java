@@ -1,7 +1,11 @@
 package edu.asu.diging.sustainability.core.service.impl;
 
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -15,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import edu.asu.diging.sustainability.core.data.AnnotationRepository;
 import edu.asu.diging.sustainability.core.data.ResourceRepository;
 import edu.asu.diging.sustainability.core.model.IResource;
 import edu.asu.diging.sustainability.core.model.impl.Resource;
@@ -26,6 +31,9 @@ public class ResourceManager implements IResourceManager {
 
     @Autowired
     private ResourceRepository resourceRepo;
+    
+    @Autowired
+    private AnnotationRepository annotationRepo;
 
     @Autowired
     private IAmphoraConnector connector;
@@ -67,6 +75,38 @@ public class ResourceManager implements IResourceManager {
         result.addCallback(new ResourceCallback(proxy));
 
         return new ResourceProxy(uri);
+    }
+    
+    @Override
+    public List<IResource> findAll() {
+        List<IResource> resources = new ArrayList<>();
+        Set<String> uris = new HashSet<>();
+        resourceRepo.findAll().forEach(r -> {
+            resources.add(r);
+            uris.add(r.getUri());
+        });
+        
+        List<String> allUris = annotationRepo.findAllUris();
+        allUris.forEach(u -> {
+            if (!uris.contains(u)) {
+                IResource res = new ResourceProxy(u);
+                resources.add(res);
+            }
+        });
+        return resources;
+    }
+    
+    @Override
+    public void updateAll() {
+        List<IResource> all = findAll();
+        all.forEach(r -> {
+            IResource proxy = null;
+            if (proxyCache.containsKey(r.getUri())) {
+                proxy = proxyCache.get(r.getUri());
+            }
+            ListenableFuture<IResource> result = connector.getResource(r.getUri());
+            result.addCallback(new ResourceCallback((ResourceProxy)proxy));
+        });
     }
 
     class ResourceCallback implements ListenableFutureCallback<IResource> {
