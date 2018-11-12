@@ -21,7 +21,7 @@ public class ListTextsController {
         return "admin/text/list";
     }
     
-    @RequestMapping(value="/admin/text/update", method=RequestMethod.POST)
+    @RequestMapping(value="/admin/text/update/all", method=RequestMethod.POST)
     public String update(RedirectAttributes redirectAttrs) {
         resourceManager.updateAll();
         redirectAttrs.addFlashAttribute("show_alert", true);

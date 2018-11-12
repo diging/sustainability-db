@@ -14,12 +14,15 @@ import java.util.Set;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.asu.diging.sustainability.core.data.AnnotationRepository;
 import edu.asu.diging.sustainability.core.data.ConceptRepository;
+import edu.asu.diging.sustainability.core.exception.NotAValidResourceException;
 import edu.asu.diging.sustainability.core.model.IAnnotation;
 import edu.asu.diging.sustainability.core.model.IConcept;
 import edu.asu.diging.sustainability.core.model.impl.Annotation;
@@ -30,6 +33,8 @@ import edu.asu.diging.sustainability.core.service.IResourceManager;
 @Service
 @Transactional
 public class AnnotationManager implements IAnnotationManager {
+    
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final String SEGMENT = "Segment";
     private final String START = "Start";
@@ -67,7 +72,11 @@ public class AnnotationManager implements IAnnotationManager {
             for (CSVRecord nextRecord : records) {
                 Annotation annotation = createAnnotation(filename, nextRecord);
                 annotationRepo.save(annotation);
-                resourceManager.getResource(annotation.getOccursIn());
+                try {
+                    resourceManager.getResource(annotation.getOccursIn());
+                } catch (NotAValidResourceException e) {
+                    logger.warn("Could not import resource metadata.", e);
+                }
             }
         }
     }

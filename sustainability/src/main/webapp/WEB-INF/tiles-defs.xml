@@ -68,5 +68,10 @@
 	<definition name="text" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/text.jsp" />	
 	</definition>
+	
+	<!--  errors -->
+	<definition name="errors/404" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/errors/404.jsp" />	
+	</definition>
 
 </tiles-definitions>

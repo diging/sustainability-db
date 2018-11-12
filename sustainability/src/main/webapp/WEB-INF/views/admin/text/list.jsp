@@ -5,7 +5,7 @@
 
 <h2>Annotated Texts</h2>
 
-<c:url value="/admin/text/update" var="updateTextsUrl" />
+<c:url value="/admin/text/update/all" var="updateTextsUrl" />
 <div class="col-sm-12">
 <form action="${updateTextsUrl}" method="POST">
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -24,6 +24,15 @@
   <c:if test="${empty text.updatedOn}">
     ${text.uri}
   </c:if>
+  
+  <div class="pull-right">
+  <c:url value="/admin/text/update?uri=${text.uri}" var="updateResourceUrl" />
+  <form action="${updateResourceUrl}" method="POST">
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	<button class="btn btn-primary btn-sm pull-right" title="Update this text's metadata"><i class="fa fa-refresh" aria-hidden="true"></i>
+</button>
+	</form>
+  </div>
   </div>
 </div>
 </c:forEach>
