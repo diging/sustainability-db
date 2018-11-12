@@ -1,19 +1,19 @@
 package edu.asu.diging.sustainability.web;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.asu.diging.sustainability.core.exception.NotAValidResourceException;
 import edu.asu.diging.sustainability.core.model.IAnnotation;
 import edu.asu.diging.sustainability.core.model.IConcept;
 import edu.asu.diging.sustainability.core.model.config.IAnnotationConfiguration;
@@ -23,6 +23,8 @@ import edu.asu.diging.sustainability.core.service.IResourceManager;
 
 @Controller
 public class RetrieveTextController {
+    
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     
     @Autowired
     private IResourceManager resourceManager;
@@ -35,7 +37,13 @@ public class RetrieveTextController {
 
     @RequestMapping(value="/text")
     public String get(Model model, @RequestParam("uri") String uri) {
-        model.addAttribute("resource", resourceManager.getResource(uri));
+        try {
+            model.addAttribute("resource", resourceManager.getResource(uri));
+        } catch (NotAValidResourceException e) {
+            logger.warn("Could not retrieve resource.", e);
+            return "errors/404";
+        }
+        
         Map<IConcept, List<IAnnotation>> annotations = annotationManager.getAnnotationsForTextByConceptHierachy(uri);
         Map<IConcept, Map<IConcept, List<IAnnotation>>> annotationsByParentConcepts = new HashMap<>();
         annotations.forEach((k, v) -> {
