@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/font-awesome-4.6.3/css/font-awesome.min.css" />" />
     <link href='https://fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet' type='text/css'>
     
-    <title>Database for Sustainability Solutions</title>
+    <title>Sustainability Solution Database</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
@@ -55,10 +55,25 @@
           	
           	<sec:authorize access="isAuthenticated()">
           	<li role="presentation">
-          		<a href="<c:url value="/admin/annotation/add" />" >Add Annotations</a>
+          		<a href="<c:url value="/admin/concept/list" />" >Concepts</a>
+          	</li>
+          	<li class="dropdown">
+          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Annotations <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="<c:url value="/admin/annotation/list" />" >Show all</a></li>
+	            <li><a href="<c:url value="/admin/annotation/add" />" >Add</a></li>
+	          </ul>
+          		
+          	</li>
+          	<li class="dropdown">
+          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Texts <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	          	<li><a href="<c:url value="/admin/text/list" />" >Show all</a></li>
+	            <li><a href="<c:url value="/admin/text/config" />" >Configure</a></li>
+	          </ul>
           	</li>
           	<li role="presentation">
-          		<a href="<c:url value="/admin/concept/list" />" >Concepts</a>
+          		<a href="<c:url value="/admin/user/list" />" >Users</a>
           	</li>
           	<li role="presentation">
          	 	<form action="<c:url value="/logout" />" method="POST">
@@ -71,7 +86,7 @@
          
         </nav>
         
-        <h1><a class="appName" href="<c:url value="/" />">Database for Sustainability Solutions</a></h1>  
+        <h1><a class="appName" href="<c:url value="/" />">Sustainability Solution Database</a></h1>  
       </div>
       
       
@@ -90,18 +105,23 @@
 		<hr style="margin-bottom: 25px;">
 		<p class="text-muted pull-left">
 		
+		<c:set var="PR" value="${pullrequest}" />
+		Version: ${version}
+		<c:if test="${not empty PR}">, Pull Request: ${pullrequest}</c:if>
+		
 	    <p class="text-muted">
 	    
 	         
 	   	<sec:authorize access="isAnonymous()">
 	   	
-		<form name='f' class="form-inline pull-right" action="<c:url value="/login/authenticate" />" method="POST">
+		<form name='f' class="form-inline pull-right" action="<c:url value="/login" />" method="POST">
 			Login:
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   			<input placeholder="Username" class="form-control input-sm" type="text" id="username" name="username"/>        
 		    <input placeholder="Password" class="form-control input-sm" type="password" id="password" name="password"/>    
 		    <button type="submit" class="btn btn-default btn-sm">Log in</button>
 		</form>
+		
 		</sec:authorize>
         </p>
         </div>

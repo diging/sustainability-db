@@ -15,4 +15,10 @@ public interface AnnotationRepository extends PagingAndSortingRepository<Annotat
 
     @Query("SELECT a FROM Annotation a WHERE a.concept.id = :conceptId")
     public List<IAnnotation> findByConceptId(@Param("conceptId") String conceptId);
+    
+    @Query("SELECT a FROM Annotation a WHERE a.occursIn = :uri")
+    public List<IAnnotation> findByUri(@Param("uri")String uri);
+    
+    @Query("SELECT DISTINCT a.occursIn FROM Annotation a")
+    public List<String> findAllUris();
 }

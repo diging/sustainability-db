@@ -3,9 +3,9 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Researcher Perspective</h1>
+<h1>Sustainable Development Goal</h1>
 
-<c:url value="/perspective/researcher/search" var="searchUrl" />
+<c:url value="/perspective/search" var="searchUrl" />
 <form:form action="${searchUrl}" method="POST">
 
 <c:forEach items="${concepts}" var="concept">
