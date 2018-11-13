@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.asu.diging</groupId>
 	<artifactId>sustainability</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<properties>
@@ -29,6 +29,8 @@
 		<tomcat.deploy.path></tomcat.deploy.path>
 		<tomcat.app.name>sustainability-db</tomcat.app.name>
 		<tomcat.server.id>TomcatServer</tomcat.server.id>
+		
+		<pullrequest></pullrequest>
 	</properties>
 
 	<dependencyManagement>
@@ -415,6 +417,14 @@
 						<version>5.1.0</version>
 					</dependency>
 				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>com.amashchenko.maven.plugin</groupId>
+				<artifactId>gitflow-maven-plugin</artifactId>
+				<version>1.10.0</version>
+				<configuration>
+					<!-- optional configuration -->
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
