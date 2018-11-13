@@ -32,6 +32,12 @@
 		
 		<pullrequest></pullrequest>
 	</properties>
+	
+	<scm>
+        <connection>scm:git:git://github.com/diging/sustainability-db.git</connection>
+        <developerConnection>scm:git:ssh://github.com/diging/sustainability-db.git</developerConnection>
+        <url>https://github.com/diging/sustainability-db</url>
+    </scm>
 
 	<dependencyManagement>
 		<dependencies>
