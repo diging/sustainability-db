@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.asu.diging.sustainability.core.data.ConceptRepository;
+import edu.asu.diging.sustainability.core.exception.NotAValidResourceException;
 import edu.asu.diging.sustainability.core.model.IAnnotation;
 import edu.asu.diging.sustainability.core.model.IConcept;
 import edu.asu.diging.sustainability.core.model.IResource;
@@ -37,7 +38,12 @@ public class ResearcherSearchController {
     	Map<String, List<IAnnotation>> URIList = annotationManager.findTextsForConcepts(selectedConcepts);
         List<IResource> resourceList = new ArrayList<IResource>();
         for(String s: URIList.keySet()) {
-            resourceList.add(resourceManager.getResource(s));
+            try {
+                resourceList.add(resourceManager.getResource(s));
+            } catch (NotAValidResourceException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
         model.addAttribute("resource",resourceList);
         //model.addAttribute("results", annotationManager.findTextsForConcepts(selectedConcepts));
@@ -57,6 +63,12 @@ public class ResearcherSearchController {
     @RequestMapping(value="/perspective/researcher/resource", method=RequestMethod.GET)
     public IResource reload(Model model, @RequestParam("uri") String uri) {
     		System.out.println("uri "+uri);
-    		return resourceManager.getResource(uri);
+    		try {
+                return resourceManager.getResource(uri);
+            } catch (NotAValidResourceException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+    		return null;
     }
 }
