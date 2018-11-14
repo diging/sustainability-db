@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>edu.asu.diging</groupId>
 	<artifactId>sustainability</artifactId>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.2</version>
 	<packaging>war</packaging>
 
 	<properties>
@@ -429,7 +429,7 @@
 				<artifactId>gitflow-maven-plugin</artifactId>
 				<version>1.10.0</version>
 				<configuration>
-					<!-- optional configuration -->
+					<versionTagPrefix>v</versionTagPrefix>
 				</configuration>
 			</plugin>
 		</plugins>

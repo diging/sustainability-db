@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    tools {
+        maven 'Maven 3.3.9'
+        jdk 'Java 1.8'
+    }
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
+
+        stage ('Deploy') {
+		    when {
+			   buildingTag()
+		    }
+            steps {
+                sh 'mvn clean tomcat7:redeploy -Dtomcat.deploy.path=${tomcat_deploy_path} -Dtomcat.server.id=${tomcat_server_id} -Dtomcat.app.name=${tomcat_app_name} -Ddb.password=${db_password} -Ddb.user=${db_user} -Ddb.url=${db_url} -Dadmin.password=${admin_password} -Damphora.url=${amphora_url} -Damphora.token=${amphora_token}' 
+            }
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
+                }
+            }
+        }
+    }
+}
