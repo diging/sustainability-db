@@ -48,7 +48,7 @@
 				    	      " Error loading resource for ${entry.uri}</li"
 				    	  $('#part' + index).replaceWith(updateResults);
 					  }
-				    }); 
+				    });
 			    }
 			</script>
 		</c:if>
