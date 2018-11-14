@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,8 @@ import edu.asu.diging.sustainability.core.service.IResourceManager;
 @Controller
 public class ResearcherSearchController {
 
+    private final Logger logger = LoggerFactory.getLogger(getClass());
+
     @Autowired
     private IAnnotationManager annotationManager;
 
@@ -37,17 +41,14 @@ public class ResearcherSearchController {
         Map<String, List<IAnnotation>> URIList =
                 annotationManager.findTextsForConcepts(selectedConcepts);
         List<IResource> resourceList = new ArrayList<IResource>();
-        for (String s : URIList.keySet()) {
+        for (String uri : URIList.keySet()) {
             try {
-                resourceList.add(resourceManager.getResource(s));
+                resourceList.add(resourceManager.getResource(uri));
             } catch (NotAValidResourceException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                logger.error("Resource " + uri + " is not a valid one.");
             }
         }
         model.addAttribute("resource", resourceList);
-        // model.addAttribute("results", annotationManager.findTextsForConcepts(selectedConcepts));
-
         List<IConcept> concepts = new ArrayList<>();
         for (String conceptId : selectedConcepts) {
             Optional<Concept> concept = conceptRepo.findById(conceptId);
@@ -62,15 +63,13 @@ public class ResearcherSearchController {
 
     @RequestMapping(value = "/perspective/researcher/resource", method = RequestMethod.GET)
     @ResponseBody
-    public IResource reload(Model model, @RequestParam("uri") String uri) {
-        System.out.println("uri " + uri);
+    public IResource reload(@RequestParam("uri") String uri) {
+        IResource resource = null;
         try {
-            model.addAttribute("rsrc", resourceManager.getResource(uri));
-            return resourceManager.getResource(uri);
+            resource = resourceManager.getResource(uri);
         } catch (NotAValidResourceException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.error("Resource " + uri + " is not a valid one.");
         }
-        return null;
+        return resource;
     }
 }

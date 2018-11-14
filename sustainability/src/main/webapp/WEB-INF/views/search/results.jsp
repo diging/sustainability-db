@@ -12,30 +12,42 @@
 <ul class="list-group">
 	<c:forEach items="${resource}" var="entry" varStatus="vs">
 		<c:if test="${empty entry.updatedOn}">
-			<li id="part${vs.index}" class="list-group-item"><i
-				class="fa fa-spinner fa-pulse"></i> Please wait while we are loading
-				the text for you.</li>
+			<li id="part${vs.index}" class="list-group-item">
+			  <i class="fa fa-spinner fa-pulse"></i> 
+			  Please wait while we are loading the text for you.
+			</li>
 			<script>
-		$(document).ready(function() {
-			setTimeout(function() 
-					  {
-				$.ajax({
-				url: "<c:url value="/perspective/researcher/resource"/>",
-				type : 'GET',
-				data: { 'uri' : '${entry.uri}'},
-				success: function (rsrc) {
-					console.log(rsrc);
-					console.log(${vs.index});
-					
-					$(part${vs.index}).html("<a href='<c:url value='/text?uri="+rsrc.uri+"'/> >"+rsrc.title+"</a>");
-				},
-				error: function(e){
-					console.log('Error');
-				}
-			}); 
-			},  3000);
-		});
-		</script>
+				setTimeout(reload('${entry.uri}','${vs.index}'), 3000);
+				function reload(uri, index)
+				{
+				  console.log(index);
+				    $.ajax({
+					  url: "<c:url value="/perspective/researcher/resource"/>",
+					  type : 'GET',
+					  data: { 'uri' : uri },
+					  success: function (rsrc) {
+					    setTimeout(function(){
+					      if(rsrc.updatedOn != null){
+					        var updateResults = "<li class = 'list-group-item'>" +
+							  "<a href = '<c:url value = '/text?uri = " + rsrc.uri + "'/>'>"
+							    + rsrc.title + " - " +	rsrc.year + "</a></li>";
+							$('#part' + index).replaceWith(updateResults);
+						  }
+						  else if(rsrc.updatedOn == null){
+						    reload(rsrc.uri, index);
+						  }
+					    },3000);
+				      },
+				      error: function(e){
+				    	  var updateResults = "<li class = 'list-group-item'>" +
+				    	    "<i class='glyphicon glyphicon-remove-sign'></i>" + 
+				    	    " Error loading resource for ${entry.uri}</li"
+				    	  $('#part' + index).replaceWith(updateResults);
+				    	  console.log(e);
+					  }
+				    }); 
+			    }
+			</script>
 		</c:if>
 		<c:if test="${not empty entry.updatedOn}">
 			<li class="list-group-item"><a
