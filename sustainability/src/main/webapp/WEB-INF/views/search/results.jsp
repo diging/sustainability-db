@@ -33,8 +33,8 @@
 					    setTimeout(function(){
 					      if(rsrc.updatedOn != null){
 					        var updateResults = "<li class = 'list-group-item'>" +
-							  "<a href = '<c:url value = '/text?uri = " + rsrc.uri + "'/>'>"
-							    + rsrc.title + " - " +	rsrc.year + "</a></li>";
+					          "<a href = '<c:url value = '/text?uri = " + rsrc.uri + "'/>'>"
+			                     + rsrc.title + " - " +	rsrc.year + "</a></li>";
 							$('#part' + index).replaceWith(updateResults);
 						  }
 						  else if(rsrc.updatedOn == null){
@@ -45,9 +45,8 @@
 				      error: function(e){
 				    	  var updateResults = "<li class = 'list-group-item'>" +
 				    	    "<i class='glyphicon glyphicon-remove-sign'></i>" + 
-				    	    " Error loading resource for ${entry.uri}</li"
+				    	      " Error loading resource for ${entry.uri}</li"
 				    	  $('#part' + index).replaceWith(updateResults);
-				    	  console.log(e);
 					  }
 				    }); 
 			    }
