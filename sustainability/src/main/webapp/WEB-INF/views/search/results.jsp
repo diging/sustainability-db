@@ -4,9 +4,13 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<h1>Researcher Perspective</h1>
+<h1>Search Results</h1>
 <h1>
-	<small>Search Results</small>
+	<small>You searched for: 
+	<c:forEach items="${concepts}" var="concept">
+		<span class="label label-warning">${concept.name}</span>
+	</c:forEach>
+	</small>
 </h1>
 
 <ul class="list-group">

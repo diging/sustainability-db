@@ -74,6 +74,7 @@ public class ResourceManager implements IResourceManager {
         if (proxyCache.containsKey(uri)) {
             return proxyCache.get(uri);
         }
+
         Optional<Resource> optional = resourceRepo.findById(uri);
         if (optional.isPresent()) {
             return optional.get();
