@@ -24,7 +24,6 @@
 				setTimeout(reload('${entry.uri}','${vs.index}'), 3000);
 				function reload(uri, index)
 				{
-				  console.log(index);
 				    $.ajax({
 					  url: "<c:url value="/perspective/researcher/resource"/>",
 					  type : 'GET',
@@ -34,7 +33,7 @@
 					      if(rsrc.updatedOn != null){
 					        var updateResults = "<li class = 'list-group-item'>" +
 					          "<a href = '<c:url value = '/text?uri = " + rsrc.uri + "'/>'>"
-			                     + rsrc.title + " - " +	rsrc.year + "</a></li>";
+			                      + rsrc.title + " - " +	rsrc.year + "</a></li>";
 							$('#part' + index).replaceWith(updateResults);
 						  }
 						  else if(rsrc.updatedOn == null){
