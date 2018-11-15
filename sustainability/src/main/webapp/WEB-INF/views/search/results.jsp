@@ -7,9 +7,9 @@
 <h1>Search Results</h1>
 <h1>
 	<small>You searched for: 
-		<c:forEach items="${concepts}" var="concept">
-			<span class="label label-warning">${concept.name}</span>
-		</c:forEach>
+	<c:forEach items="${concepts}" var="concept">
+		<span class="label label-warning">${concept.name}</span>
+	</c:forEach>
 	</small>
 </h1>
 
@@ -33,7 +33,8 @@
 							  var updateResults = "<li class = 'list-group-item'>" +
 								"<c:url value='/text?uri=' var='rsrcUrl' />" +
 									"<a href = ${rsrcUrl}" + rsrc.uri + ">" + 
-										rsrc.title + " (" +	rsrc.year + ")</a></li>";
+										rsrc.title + " (" +	rsrc.year + 
+											")</a></li>";
 							$('#part' + index).replaceWith(updateResults);
 						  }
 						  else if(rsrc.updatedOn == null){
@@ -42,12 +43,12 @@
 					    }, 3000);
 				      },
 				      error: function(e) {
-				    	  var updateResults = "<li class = 'list-group-item'>" + 
-				    	  		"<i class='glyphicon glyphicon-remove-sign'></i>" + 
-				    	      	" Error loading the resource ${entry.uri}</li>";
-				    	  $('#part' + index).replaceWith(updateResults);
-					  }
-				    });
+						var updateResults = "<li class = 'list-group-item'>" + 
+							"<i class='glyphicon glyphicon-remove-sign'></i>" + 
+								" Error loading the resource ${entry.uri}</li>";
+						$('#part' + index).replaceWith(updateResults);
+				      }
+					});
 			    }
 			</script>
 		</c:if>

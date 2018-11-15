@@ -71,9 +71,9 @@ public class ResourceManager implements IResourceManager {
      */
     @Override
     public IResource getResource(String uri) throws NotAValidResourceException {
-//        if (proxyCache.containsKey(uri)) {
-//            return proxyCache.get(uri);
-//        }
+        if (proxyCache.containsKey(uri)) {
+            return proxyCache.get(uri);
+        }
 
         Optional<Resource> optional = resourceRepo.findById(uri);
         if (optional.isPresent()) {
