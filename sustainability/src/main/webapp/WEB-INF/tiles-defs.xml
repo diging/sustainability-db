@@ -63,9 +63,6 @@
 	<definition name="perspective/researcher/search" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/search/results.jsp" />	
 	</definition>
-	<definition name="perspective/researcher/resource" extends="base.definition">
-		<put-attribute name="content" value="/WEB-INF/views/search/results.jsp" />	
-	</definition>
 
 	<definition name="text" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/text.jsp" />	
