@@ -20,6 +20,7 @@
 				<i class="fa fa-spinner fa-pulse"></i> 
 				Please wait while we are loading the text for you.
 			</li>
+			<c:url value = "/text?uri=" var="rsrcUri" />
 			<script>
 				setTimeout(reload('${entry.uri}','${vs.index}'), 3000);
 				function reload(uri, index) {
@@ -28,23 +29,22 @@
 					  type : 'GET',
 					  data: { 'uri' : uri },
 					  success: function (rsrc) {
-					  	setTimeout(function() {
-							if(rsrc.updatedOn != null) {
+						  if(rsrc.updatedOn != null) {
 							  var updateResults = "<li class = 'list-group-item'>" +
-								"<a href = /text?uri=" + rsrc.uri + ">" + rsrc.title +
+								"<a href = ${rsrcUri}" + rsrc.uri + ">" + rsrc.title +
 										" (" +	rsrc.year + ")</a></li>";
-							$('#part' + index).replaceWith(updateResults);
+							  $('#part' + index).replaceWith(updateResults);
 						  }
 						  else {
-							  reload(rsrc.uri, index);
-						  }
-					    }, 3000);
+							  setTimeout(function() {
+							  	reload(rsrc.uri, index);
+						  }, 3000);
+					    }
 				      },
 				      error: function(e) {
 						var updateResults = "<li class = 'list-group-item'>" + 
 							"<i class='glyphicon glyphicon-remove-sign'></i>" + 
 								" Error loading the resource ${entry.uri}</li>";
-						$('#part' + index).replaceWith(updateResults);
 				      }
 					});
 			    }
