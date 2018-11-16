@@ -31,13 +31,11 @@
 					  	setTimeout(function() {
 							if(rsrc.updatedOn != null) {
 							  var updateResults = "<li class = 'list-group-item'>" +
-								"<c:url value='/text?uri=' var='rsrcUrl' />" +
-									"<a href = ${rsrcUrl}" + rsrc.uri + ">" + 
-										rsrc.title + " (" +	rsrc.year + 
-											")</a></li>";
+								"<a href = /text?uri=" + rsrc.uri + ">" + rsrc.title +
+										" (" +	rsrc.year + ")</a></li>";
 							$('#part' + index).replaceWith(updateResults);
 						  }
-						  else if(rsrc.updatedOn == null){
+						  else {
 							  reload(rsrc.uri, index);
 						  }
 					    }, 3000);

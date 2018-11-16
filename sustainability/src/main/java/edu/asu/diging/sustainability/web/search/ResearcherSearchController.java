@@ -17,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.asu.diging.sustainability.core.data.ConceptRepository;
 import edu.asu.diging.sustainability.core.exception.NotAValidResourceException;
@@ -52,7 +51,7 @@ public class ResearcherSearchController {
             try {
                 resourceList.add(resourceManager.getResource(uri));
             } catch (NotAValidResourceException e) {
-                logger.error("Resource " + uri + " is not a valid one.");
+                logger.error("Resource " + uri + " is not a valid one.", e);
             }
         }
         model.addAttribute("resource", resourceList);
@@ -68,13 +67,12 @@ public class ResearcherSearchController {
     }
 
     @RequestMapping(value = "/perspective/researcher/resource", method = RequestMethod.GET)
-    @ResponseBody
     public ResponseEntity<IResource> reload(@RequestParam("uri") String uri) {
         IResource resource = null;
         try {
             resource = resourceManager.getResource(uri);
         } catch (NotAValidResourceException e) {
-            logger.error("Resource " + uri + " is not a valid one.");
+            logger.error("Resource " + uri + " is not a valid one.", e);
             return new ResponseEntity<IResource>(resource, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<IResource>(resource, HttpStatus.OK);
