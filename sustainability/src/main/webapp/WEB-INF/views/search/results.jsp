@@ -31,7 +31,7 @@
 					  success: function (rsrc) {
 						  if(rsrc.updatedOn != null) {
 							  var updateResults = "<li class = 'list-group-item'>" +
-								"<a href = ${rsrcUri}" + rsrc.uri + ">" + rsrc.title +
+								"<a href = '${rsrcUri}" + rsrc.uri + "'>" + rsrc.title +
 										" (" +	rsrc.year + ")</a></li>";
 							  $('#part' + index).replaceWith(updateResults);
 						  }
