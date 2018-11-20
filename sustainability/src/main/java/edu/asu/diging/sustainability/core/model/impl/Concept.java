@@ -1,5 +1,6 @@
 package edu.asu.diging.sustainability.core.model.impl;
 
+import java.util.Comparator;
 import java.util.List;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -81,6 +82,8 @@ public class Concept implements IConcept {
 
     @Override
     public List<IConcept> getChildren() {
+        Comparator<IConcept> byName = Comparator.comparing(IConcept::getName);
+        children.sort(byName);
         return children;
     }
 

@@ -39,7 +39,7 @@ public class ConceptManager implements IConceptManager {
 
     @Override
     public List<IConcept> getTopConcepts() {
-        Iterable<Concept> concepts = conceptRepo.findByParentIsNull();
+        Iterable<Concept> concepts = conceptRepo.findByParentIsNullOrderByNameAsc();
         List<IConcept> allConcepts = new ArrayList<>();
         for (Concept c : concepts) {
             // load children
