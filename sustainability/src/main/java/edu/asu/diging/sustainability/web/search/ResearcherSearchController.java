@@ -30,7 +30,6 @@ public class ResearcherSearchController {
         model.addAttribute("results", annotationManager.findTextsForConcepts(selectedConcepts));
         
         List<IConcept> concepts = new ArrayList<>();
-        System.out.println(concepts);
         for (String conceptId : selectedConcepts) {
             Optional<Concept> concept = conceptRepo.findById(conceptId);
             if (concept.isPresent()) {
