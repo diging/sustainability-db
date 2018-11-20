@@ -51,6 +51,11 @@
 		<put-attribute name="content" value="/WEB-INF/views/admin/text/list.jsp" />	
 	</definition>
 	
+	<!--  static pages -->
+	<definition name="admin/contact/edit" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/admin/pages/contact.jsp" />	
+	</definition>
+	
 	<!-- Search perspective -->
 	<definition name="perspective/concepts" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/search/main.jsp" />	

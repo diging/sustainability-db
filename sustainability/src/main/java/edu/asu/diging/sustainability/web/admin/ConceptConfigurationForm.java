@@ -2,6 +2,8 @@ package edu.asu.diging.sustainability.web.admin;
 
 import java.util.List;
 
+import edu.asu.diging.sustainability.web.admin.pages.ConceptForm;
+
 /**
  * @author namrathaov 
  * Backing form for the edit configuration page.

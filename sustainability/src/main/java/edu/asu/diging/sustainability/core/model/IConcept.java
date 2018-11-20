@@ -1,7 +1,6 @@
 package edu.asu.diging.sustainability.core.model;
 
 import java.util.List;
-import edu.asu.diging.sustainability.core.model.impl.SearchCategory;
 
 public interface IConcept {
 

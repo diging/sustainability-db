@@ -72,6 +72,12 @@
 	            <li><a href="<c:url value="/admin/text/config" />" >Configure</a></li>
 	          </ul>
           	</li>
+          	<li class="dropdown">
+          	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	          	<li><a href="<c:url value="/admin/pages/contact/edit" />" >Contact Info</a></li>
+	          </ul>
+          	</li>
           	<li role="presentation">
           		<a href="<c:url value="/admin/user/list" />" >Users</a>
           	</li>
