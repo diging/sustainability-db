@@ -22,8 +22,8 @@ public class AboutController {
     @RequestMapping("about")
     public String contact(Model model) {
         IStaticPage page = staticPageManager.getStaticPage(PageType.ABOUT);
-        model.addAttribute("title", page.getTitle() != null ? page.getTitle() : "");
-        model.addAttribute("content", markdownUtil.render(page.getContent() != null ? page.getContent() : ""));
+        model.addAttribute("title", page != null ? page.getTitle() : "");
+        model.addAttribute("content", markdownUtil.render(page != null ? page.getContent() : ""));
         
         return "about";
     }
