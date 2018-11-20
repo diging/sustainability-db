@@ -13,9 +13,49 @@
 	</small>
 </h1>
 
-
 <ul class="list-group">
-	<c:forEach items="${results}" var="entry">
-		<li class="list-group-item"><a href="<c:url value="/text?uri=${entry.key}" />">${entry.key}</a></li>
+	<c:forEach items="${resource}" var="entry" varStatus="vs">
+		<c:if test="${not empty entry and empty entry.updatedOn}">
+			<li id="part${vs.index}" class="list-group-item">
+				<i class="fa fa-spinner fa-pulse"></i> 
+				Please wait while we are loading the text for you.
+			</li>
+			<c:url value = "/text?uri=" var="rsrcUri" />
+			<script>
+				setTimeout(reload('${entry.uri}','${vs.index}'), 3000);
+				function reload(uri, index) {
+				    $.ajax({
+					  url: "<c:url value="/perspective/researcher/resource"/>",
+					  type : 'GET',
+					  data: { 'uri' : uri },
+					  success: function (rsrc) {
+						  if(rsrc.updatedOn != null) {
+							  var updateResults = "<li class = 'list-group-item'>" +
+								"<a href = '${rsrcUri}" + rsrc.uri + "'>" + rsrc.title +
+										" (" +	rsrc.year + ")</a></li>";
+							  $('#part' + index).replaceWith(updateResults);
+						  }
+						  else {
+							  setTimeout(function() {
+							  	reload(rsrc.uri, index);
+						  }, 3000);
+					    }
+				      },
+				      error: function(e) {
+						var updateResults = "<li class = 'list-group-item'>" + 
+							"<i class='glyphicon glyphicon-remove-sign'></i>" + 
+								" Error loading the resource ${entry.uri}</li>";
+				      }
+					});
+			    }
+			</script>
+		</c:if>
+		<c:if test="${not empty entry.updatedOn}">
+			<li class="list-group-item">
+			  <a href="<c:url value="/text?uri=${entry.uri}"/>">
+				${entry.title} (${entry.year}) 
+			  </a>
+			</li>
+		</c:if>
 	</c:forEach>
 </ul>
