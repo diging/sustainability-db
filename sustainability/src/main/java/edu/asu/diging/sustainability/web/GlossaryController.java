@@ -25,8 +25,8 @@ public class GlossaryController {
     @RequestMapping("glossary")
     public String contact(Model model) {
         IStaticPage page = staticPageManager.getStaticPage(PageType.GLOSSARY);
-        model.addAttribute("title", page.getTitle());
-        model.addAttribute("content", markdownUtil.render(page.getContent()));
+        model.addAttribute("title", page.getTitle() != null ? page.getTitle() : "");
+        model.addAttribute("content", markdownUtil.render(page.getContent() != null ? page.getContent() : ""));
         
         return "glossary";
     }
