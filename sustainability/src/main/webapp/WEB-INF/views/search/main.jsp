@@ -3,15 +3,10 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<style>
-.btn.btn-default.active,
-.btn.btn-default:active {
-  color: #fff;
-  background-color: #5cb85c;
-  border-color: black;
-  outline: none;
-}
-</style>
+
+<!-- Custom styling for the search page. -->
+<link href="<c:url value="/resources/bootstrap/css/search/search.css" />" rel="stylesheet">
+
 <h1>Sustainable Development Goal</h1>
 
 <c:url value="/perspective/search" var="searchUrl" />
@@ -27,8 +22,8 @@
 			<div class="col-md-10">
 				<c:forEach items="${concept.children}" var="child">
 					<div class="col-md-3">
-						<div class="btn-group btn-group-toggle" data-toggle="buttons" role="button" style="display:block">
-							<label class="btn btn-default" style="width:100%;overflow:hidden">
+						<div class="btn-group btn-group-toggle group-buttons" data-toggle="buttons" role="button">
+							<label id="check" class="btn btn-default button-label">
 								<input type="checkbox" name="selectedConcepts" value="${child.id}"
 								/>${child.name}
 							</label>
