@@ -52,6 +52,11 @@
           	<li role="presentation">
           		<a href="<c:url value="/" />" >Home</a>
           	</li>
+          	<sec:authorize access="isAnonymous()">
+          	<li role="presentation">
+          		<a href="<c:url value="/contact" />" >Contact</a>
+          	</li>
+          	</sec:authorize>
           	
           	<sec:authorize access="isAuthenticated()">
           	<li role="presentation">
