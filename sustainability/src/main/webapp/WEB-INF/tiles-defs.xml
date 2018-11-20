@@ -55,6 +55,9 @@
 	<definition name="admin/contact/edit" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/admin/pages/contact.jsp" />	
 	</definition>
+	<definition name="admin/glossary/edit" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/admin/pages/glossary.jsp" />	
+	</definition>
 	
 	<!-- Search perspective -->
 	<definition name="perspective/concepts" extends="base.definition">
@@ -75,7 +78,10 @@
 	
 	<!-- Static pages public page -->
 	<definition name="contact" extends="base.definition">
-		<put-attribute name="content" value="/WEB-INF/views/contact.jsp" />	
+		<put-attribute name="content" value="/WEB-INF/views/page.jsp" />	
+	</definition>
+	<definition name="glossary" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/page.jsp" />	
 	</definition>
 	
 	<!--  errors -->

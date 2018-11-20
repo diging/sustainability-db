@@ -15,7 +15,7 @@ import edu.asu.diging.sustainability.core.service.IStaticPageManager;
 import edu.asu.diging.sustainability.web.admin.pages.StaticPageForm;
 
 @Controller
-public class ContactPageController {
+public class StaticPageController {
     
     @Autowired
     private IStaticPageManager pageManager;
@@ -36,7 +36,7 @@ public class ContactPageController {
             form.setContent(page.getContent());
         }
         model.addAttribute("form", form);
-        return "admin/contact/edit";
+        return "admin/" + type + "/edit";
     }
     
     @RequestMapping(value="/admin/pages/{type}/edit", method=RequestMethod.POST)
@@ -49,6 +49,6 @@ public class ContactPageController {
         }
         
         pageManager.storeStaticPage(form.getTitle(), form.getContent(), pageType);
-        return "redirect:/admin/pages/contact/edit";
+        return "redirect:/admin/pages/" + type + "/edit";
     }
 }

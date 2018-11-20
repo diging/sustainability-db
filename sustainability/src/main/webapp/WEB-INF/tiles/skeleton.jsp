@@ -56,6 +56,9 @@
           	<li role="presentation">
           		<a href="<c:url value="/contact" />" >Contact</a>
           	</li>
+          	<li role="presentation">
+          		<a href="<c:url value="/glossary" />" >Glossary</a>
+          	</li>
           	</sec:authorize>
           	
           	<sec:authorize access="isAuthenticated()">
@@ -81,6 +84,7 @@
           	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
 	          <ul class="dropdown-menu">
 	          	<li><a href="<c:url value="/admin/pages/contact/edit" />" >Contact Info</a></li>
+	          	<li><a href="<c:url value="/admin/pages/glossary/edit" />" >Glossary Info</a></li>
 	          </ul>
           	</li>
           	<li role="presentation">
