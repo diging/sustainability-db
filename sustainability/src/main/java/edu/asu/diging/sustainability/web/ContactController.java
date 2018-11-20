@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import edu.asu.diging.sustainability.core.model.IStaticPage;
 import edu.asu.diging.sustainability.core.model.PageType;
 import edu.asu.diging.sustainability.core.service.IStaticPageManager;
+import edu.asu.diging.sustainability.web.util.MarkdownUtil;
 
 @Controller
 public class ContactController {
@@ -18,15 +19,14 @@ public class ContactController {
     @Autowired
     private IStaticPageManager staticPageManager;
 
+    @Autowired
+    private MarkdownUtil markdownUtil;
+
     @RequestMapping("contact")
     public String contact(Model model) {
         IStaticPage page = staticPageManager.getStaticPage(PageType.CONTACT);
         model.addAttribute("title", page.getTitle());
-        
-        Parser parser = Parser.builder().build();
-        Node document = parser.parse(page.getContent());
-        HtmlRenderer renderer = HtmlRenderer.builder().softbreak("<br>").build();
-        model.addAttribute("content", renderer.render(document));
+        model.addAttribute("content", markdownUtil.render(page.getContent()));
         
         return "contact";
     }
