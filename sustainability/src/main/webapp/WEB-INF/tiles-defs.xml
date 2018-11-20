@@ -58,6 +58,9 @@
 	<definition name="admin/glossary/edit" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/admin/pages/glossary.jsp" />	
 	</definition>
+	<definition name="admin/about/edit" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/admin/pages/about.jsp" />	
+	</definition>
 	
 	<!-- Search perspective -->
 	<definition name="perspective/concepts" extends="base.definition">
@@ -81,6 +84,9 @@
 		<put-attribute name="content" value="/WEB-INF/views/page.jsp" />	
 	</definition>
 	<definition name="glossary" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/page.jsp" />	
+	</definition>
+	<definition name="about" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/page.jsp" />	
 	</definition>
 	
