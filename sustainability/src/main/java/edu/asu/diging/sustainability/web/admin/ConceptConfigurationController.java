@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import edu.asu.diging.sustainability.core.model.impl.SearchCategory;
+import edu.asu.diging.sustainability.core.model.SearchCategory;
 import edu.asu.diging.sustainability.core.service.IConceptManager;
+import edu.asu.diging.sustainability.web.admin.pages.ConceptForm;
 
 /**
  * @author namrathaov  

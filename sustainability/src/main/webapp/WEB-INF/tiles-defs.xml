@@ -51,6 +51,17 @@
 		<put-attribute name="content" value="/WEB-INF/views/admin/text/list.jsp" />	
 	</definition>
 	
+	<!--  static pages -->
+	<definition name="admin/contact/edit" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/admin/pages/contact.jsp" />	
+	</definition>
+	<definition name="admin/glossary/edit" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/admin/pages/glossary.jsp" />	
+	</definition>
+	<definition name="admin/about/edit" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/admin/pages/about.jsp" />	
+	</definition>
+	
 	<!-- Search perspective -->
 	<definition name="perspective/concepts" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/search/main.jsp" />	
@@ -63,10 +74,20 @@
 	<definition name="perspective/researcher/search" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/search/results.jsp" />	
 	</definition>
-	
 
 	<definition name="text" extends="base.definition">
 		<put-attribute name="content" value="/WEB-INF/views/text.jsp" />	
+	</definition>
+	
+	<!-- Static pages public page -->
+	<definition name="contact" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/page.jsp" />	
+	</definition>
+	<definition name="glossary" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/page.jsp" />	
+	</definition>
+	<definition name="about" extends="base.definition">
+		<put-attribute name="content" value="/WEB-INF/views/page.jsp" />	
 	</definition>
 	
 	<!--  errors -->
