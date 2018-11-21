@@ -1,0 +1,13 @@
+.group-buttons {
+	display: block;
+}
+
+.btn.btn-default.active, .btn.btn-default:active {
+	background-color: #5cb85c;
+	border-color: black;
+}
+
+.button-label {
+	width: 100%;
+	overflow: hidden;
+}
