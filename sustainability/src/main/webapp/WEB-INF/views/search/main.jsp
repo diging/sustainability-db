@@ -24,10 +24,12 @@
 			<div class="col-md-10">
 				<c:forEach items="${concept.children}" var="child">
 					<div class="col-md-3">
-						<div class="alert alert-warning" role="alert">
-							<input type="checkbox" class="selectedConcepts"
+						<div class="btn-group btn-group-toggle group-buttons" data-toggle="buttons" role="button">
+							<label id="check" class="btn btn-default button-label">
+							  <input type="checkbox" class="selectedConcepts"
 								name="selectedConcepts" value="${child.id}">
 							${child.name}
+							</label>
 						</div>
 					</div>
 				</c:forEach>
