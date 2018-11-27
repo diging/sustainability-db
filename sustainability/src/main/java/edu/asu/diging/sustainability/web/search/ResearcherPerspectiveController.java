@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.asu.diging.sustainability.core.model.IConcept;
-import edu.asu.diging.sustainability.core.model.impl.SearchCategory;
+import edu.asu.diging.sustainability.core.model.SearchCategory;
 import edu.asu.diging.sustainability.core.service.IConceptManager;
 
 @Controller

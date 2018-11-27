@@ -4,6 +4,9 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<!-- Custom styling for the search page. -->
+<link href="<c:url value="/resources/bootstrap/css/search/search.css" />" rel="stylesheet">
+
 <h1>Sustainable Development Goal</h1>
 
 <c:url value="/perspective/search" var="searchUrl" />
@@ -27,7 +30,6 @@
 							${child.name}
 						</div>
 					</div>
-
 				</c:forEach>
 			</div>
 		</div>

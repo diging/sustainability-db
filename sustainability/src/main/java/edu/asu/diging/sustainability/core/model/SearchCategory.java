@@ -1,4 +1,4 @@
-package edu.asu.diging.sustainability.core.model.impl;
+package edu.asu.diging.sustainability.core.model;
 
 /**
  * Enumerator to configure the search categories of concepts.
