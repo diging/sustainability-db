@@ -14,7 +14,7 @@
 <c:url value="/perspective/search" var="searchUrl" />
 <form:form action="${searchUrl}" method="POST">
 	<div id="deleteAlert" class="alert alert-danger" style="display: none;">
-		<strong>Please select at least one SDG to search.</strong>
+		<strong>Please select at least one concept to search.</strong>
 	</div>
 	<c:forEach items="${concepts}" var="concept">
 		<div class="row">
