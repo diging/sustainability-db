@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.asu.diging.sustainability.core.data.ConceptRepository;
 import edu.asu.diging.sustainability.core.model.IConcept;
+import edu.asu.diging.sustainability.core.model.SearchCategory;
 import edu.asu.diging.sustainability.core.model.impl.Concept;
 import edu.asu.diging.sustainability.core.service.IConceptManager;
-import edu.asu.diging.sustainability.core.model.impl.SearchCategory;
 
 @Service
 @Transactional

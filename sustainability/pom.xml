@@ -29,15 +29,15 @@
 		<tomcat.deploy.path></tomcat.deploy.path>
 		<tomcat.app.name>sustainability-db</tomcat.app.name>
 		<tomcat.server.id>TomcatServer</tomcat.server.id>
-		
+
 		<pullrequest></pullrequest>
 	</properties>
-	
+
 	<scm>
-        <connection>scm:git:git://github.com/diging/sustainability-db.git</connection>
-        <developerConnection>scm:git:ssh://github.com/diging/sustainability-db.git</developerConnection>
-        <url>https://github.com/diging/sustainability-db</url>
-    </scm>
+		<connection>scm:git:git://github.com/diging/sustainability-db.git</connection>
+		<developerConnection>scm:git:ssh://github.com/diging/sustainability-db.git</developerConnection>
+		<url>https://github.com/diging/sustainability-db</url>
+	</scm>
 
 	<dependencyManagement>
 		<dependencies>
@@ -267,7 +267,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>5.3.2.Final</version>
+			<version>5.3.7.Final</version>
 		</dependency>
 
 		<dependency>
@@ -351,6 +351,11 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>com.atlassian.commonmark</groupId>
+			<artifactId>commonmark</artifactId>
+			<version>0.12.1</version>
+		</dependency>
 
 	</dependencies>
 

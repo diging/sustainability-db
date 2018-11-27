@@ -15,6 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import org.springframework.context.annotation.PropertySource;
 import edu.asu.diging.sustainability.core.model.IConcept;
+import edu.asu.diging.sustainability.core.model.SearchCategory;
 
 @Entity
 @PropertySource("classpath:config.properties")

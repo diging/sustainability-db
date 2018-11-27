@@ -1,7 +1,8 @@
-package edu.asu.diging.sustainability.web.admin;
+package edu.asu.diging.sustainability.web.admin.pages;
 
 import java.util.List;
-import edu.asu.diging.sustainability.core.model.impl.SearchCategory;
+
+import edu.asu.diging.sustainability.core.model.SearchCategory;
 
 /**
  * @author namrathaov 
