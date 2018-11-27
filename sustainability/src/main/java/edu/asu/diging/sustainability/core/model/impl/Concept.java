@@ -2,6 +2,8 @@ package edu.asu.diging.sustainability.core.model.impl;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -83,8 +85,39 @@ public class Concept implements IConcept {
 
     @Override
     public List<IConcept> getChildren() {
-        Comparator<IConcept> byName = Comparator.comparing(IConcept::getName);
-        children.sort(byName);
+        
+        //Pattern for left to right integer scanning
+        Pattern alphaNumPattern = Pattern.compile("\\d+");
+        
+        //Custom alphanumeric comparator for natural order sorting 
+        Comparator<IConcept> c = new Comparator<IConcept>() {
+            @Override
+            public int compare(IConcept concept1, IConcept concept2) {
+                Matcher match = alphaNumPattern.matcher(concept1.getName());
+                if (!match.find()) {
+                    return (concept1.getName()).compareTo(concept2.getName());
+                }
+                else {
+                    Integer number1, number2 = null;
+                    number1 = Integer.parseInt(match.group());
+                    match = alphaNumPattern.matcher(concept2.getName());
+                    if (!match.find()) {
+                        return concept1.getName().compareTo(concept2.getName());
+                    }
+                    else {
+                        number2 = Integer.parseInt(match.group());
+                        int comparison = number1.compareTo(number2);
+                        if (comparison != 0) {
+                            return comparison;
+                        }
+                        else {
+                            return concept1.getName().compareTo(concept2.getName());
+                        }
+                    }
+                }
+            }
+        };
+        children.sort(c);
         return children;
     }
 
