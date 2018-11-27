@@ -20,6 +20,7 @@
 	      <li class="list-group-item">
 	        <form:hidden path="concepts[${vs.index}].id" value="${con.id}"/>
 	        ${con.name}
+	        &nbsp;<input type="text" name="concept-alias" />
 	        <div class="checkbox-switch">
 	          <c:forEach items="${categories}" var="category" >
 	            <spring:eval var="containsValue" expression="con.searchCategories.contains(category)" />
