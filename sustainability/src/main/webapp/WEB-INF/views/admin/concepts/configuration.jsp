@@ -6,21 +6,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<style>
-#search-header {
-	float: right;
-	padding-right: 10%;
-}
-
-#alias-header {
-	float: left;
-	padding-left: 2%;
-}
-
-.panel-heading {
-	height: 30px;
-}
-</style>
 
 <!-- Custom styling for configuration page. -->
 <link href="<c:url value="/resources/bootstrap/css/admin/admin.css" />"
@@ -30,7 +15,7 @@
 <form:form modelAttribute="form" action="${updateConfigUrl}"
 	method="POST">
 	<div class="panel panel-default">
-		<div class="panel panel-heading">
+		<div class="panel panel-heading update-config-panel">
 			<strong id="alias-header">Concept Name &nbsp; Alias</strong> <strong
 				id="search-header">Search Categories</strong>
 		</div>

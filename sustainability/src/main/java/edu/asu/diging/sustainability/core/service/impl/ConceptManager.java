@@ -68,7 +68,7 @@ public class ConceptManager implements IConceptManager {
     }
 
     /**
-     * Store the alias for concept name with the given concept Id.
+     * Store the alias for concept name for the concept with given Id.
      * 
      * @param conceptId The id of the concept for which the alias is provided.
      * @param alias Alias for the concept name to be saved.
