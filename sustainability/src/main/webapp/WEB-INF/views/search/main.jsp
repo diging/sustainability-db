@@ -5,14 +5,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!-- Custom styling for the search page. -->
-<link href="<c:url value="/resources/bootstrap/css/search/search.css" />" rel="stylesheet">
+<link
+	href="<c:url value="/resources/bootstrap/css/search/search.css" />"
+	rel="stylesheet">
 
 <h1>Sustainable Development Goal</h1>
 
 <c:url value="/perspective/search" var="searchUrl" />
 <form:form action="${searchUrl}" method="POST">
-
-	<c:forEach items="${concepts}" var="concept" varStatus="conceptIter">
+	<div id="deleteAlert" class="alert alert-danger" style="display: none;">
+		<strong>Please select at least one concept to search.</strong>
+	</div>
+	<c:forEach items="${concepts}" var="concept">
 		<div class="row">
 			<div class="col-md-2">
 				<p>
@@ -22,18 +26,30 @@
 			<div class="col-md-10">
 				<c:forEach items="${concept.children}" var="child">
 					<div class="col-md-3">
-						<div class="btn-group btn-group-toggle group-buttons" data-toggle="buttons" role="button">
-							<label id="check" class="btn btn-default button-label">
-								<input type="checkbox" name="selectedConcepts" value="${child.id}"
-								/>${child.name}
+						<div class="btn-group btn-group-toggle group-buttons"
+							data-toggle="buttons" role="button">
+							<label id="check" class="btn btn-default button-label"> <input
+								type="checkbox" name="selectedConcepts" value="${child.id}" />${child.name}
 							</label>
 						</div>
 					</div>
+
 				</c:forEach>
 			</div>
 		</div>
 	</c:forEach>
+
 	<div class="text-right">
-		<button type="submit" class="btn btn-default">Search</button>
+		<button type="submit" id="search-btn" class="btn btn-default">Search</button>
 	</div>
 </form:form>
+<script>
+	$(document).ready(function() {
+		$('#search-btn').on("click", function(e) {
+			if ($('input[type="checkbox"]:checked').length == 0) {
+				$('#deleteAlert').toggle("slide");
+				e.preventDefault();
+			}
+		});
+	});
+</script>
