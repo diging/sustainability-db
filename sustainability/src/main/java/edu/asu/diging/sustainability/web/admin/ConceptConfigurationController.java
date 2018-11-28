@@ -48,6 +48,7 @@ public class ConceptConfigurationController {
             BindingResult results, Model model, HttpServletRequest request) {
         for (ConceptForm concept : conceptConfigurationForm.getConcepts()) {
             conceptManager.storeConceptSearchCategories(concept.getId(), concept.getSearchCategories());
+            conceptManager.storeConceptAlias(concept.getId(),concept.getConceptAlias());
         }
         return "redirect:/admin/concept/list";
     }

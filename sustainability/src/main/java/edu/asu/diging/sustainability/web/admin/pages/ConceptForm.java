@@ -12,6 +12,8 @@ public class ConceptForm {
 
     private String id;
 
+    private String conceptAlias;
+    
     private List<SearchCategory> searchCategories;
 
     public String getId() {
@@ -20,6 +22,15 @@ public class ConceptForm {
 
     public void setId(String id) {
         this.id = id;
+    }
+    
+    public String getConceptAlias() {
+        return conceptAlias;
+    }
+
+    public void setConceptAlias(String conceptAlias) {
+        System.out.println(conceptAlias);
+        this.conceptAlias = conceptAlias;
     }
 
     public List<SearchCategory> getSearchCategories() {

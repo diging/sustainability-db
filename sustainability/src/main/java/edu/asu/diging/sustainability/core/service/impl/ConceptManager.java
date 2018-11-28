@@ -66,4 +66,18 @@ public class ConceptManager implements IConceptManager {
         concept.setSearchCategories(searchCategories);
         conceptRepo.save((Concept) concept);
     }
+
+    /**
+     * Store the alias for concept name with the given concept Id.
+     * 
+     * @param conceptId The id of the concept for which the alias is provided.
+     * @param alias Alias for the concept name to be saved.
+     */
+    @Override
+    public void storeConceptAlias(String conceptId, String alias) {
+        IConcept concept = getConceptById(conceptId);
+        concept.setAlias(alias);
+        conceptRepo.save((Concept) concept);
+        
+    }
 }

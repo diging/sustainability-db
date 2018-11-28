@@ -15,4 +15,6 @@ public interface IConceptManager {
 
     void storeConceptSearchCategories(String conceptId, List<SearchCategory> roles);
 
+    void storeConceptAlias(String conceptId, String alias);
+
 }

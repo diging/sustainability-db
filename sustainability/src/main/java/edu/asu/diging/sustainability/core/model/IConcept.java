@@ -28,4 +28,6 @@ public interface IConcept {
 
     List<SearchCategory> getSearchCategories();
 
+    void setAlias(String alias);
+
 }
