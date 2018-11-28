@@ -87,34 +87,24 @@ public class Concept implements IConcept {
     public List<IConcept> getChildren() {
         
         //Pattern for left to right integer scanning
-        Pattern alphaNumPattern = Pattern.compile("\\d+");
+        Pattern alphaNumPattern = Pattern.compile("SDG[0-9]+");
         
         //Custom alphanumeric comparator for natural order sorting 
         Comparator<IConcept> c = new Comparator<IConcept>() {
             @Override
             public int compare(IConcept concept1, IConcept concept2) {
                 Matcher match = alphaNumPattern.matcher(concept1.getName());
-                if (!match.find()) {
-                    return (concept1.getName()).compareTo(concept2.getName());
-                }
-                else {
-                    Integer number1, number2 = null;
-                    number1 = Integer.parseInt(match.group());
+                if(match.find()) {
+                    Integer number1 = Integer.parseInt(match.group());
                     match = alphaNumPattern.matcher(concept2.getName());
-                    if (!match.find()) {
-                        return concept1.getName().compareTo(concept2.getName());
-                    }
-                    else {
-                        number2 = Integer.parseInt(match.group());
-                        int comparison = number1.compareTo(number2);
-                        if (comparison != 0) {
-                            return comparison;
-                        }
-                        else {
-                            return concept1.getName().compareTo(concept2.getName());
+                    if(match.find()) {
+                        Integer number2 = Integer.parseInt(match.group());
+                        if (number1.compareTo(number2) != 0) {
+                            return number1.compareTo(number2);
                         }
                     }
                 }
+                return concept1.getName().compareTo(concept2.getName());
             }
         };
         children.sort(c);
