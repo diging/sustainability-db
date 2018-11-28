@@ -11,7 +11,7 @@ import edu.asu.diging.sustainability.web.admin.pages.ConceptForm;
 public class ConceptConfigurationForm {
 
     private List<ConceptForm> concepts;
-    
+
     public List<ConceptForm> getConcepts() {
         return concepts;
     }
