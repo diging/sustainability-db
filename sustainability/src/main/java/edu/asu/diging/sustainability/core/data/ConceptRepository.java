@@ -15,4 +15,6 @@ public interface ConceptRepository extends PagingAndSortingRepository<Concept, S
     List<Concept> findByName(String name);
 
     List<Concept> findByParentIsNull();
+    
+    List<Concept> findByParentIsNullOrderByNameAsc();
 }

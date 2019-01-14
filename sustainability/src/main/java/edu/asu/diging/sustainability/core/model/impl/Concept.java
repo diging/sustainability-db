@@ -1,6 +1,9 @@
 package edu.asu.diging.sustainability.core.model.impl;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -82,6 +85,29 @@ public class Concept implements IConcept {
 
     @Override
     public List<IConcept> getChildren() {
+        
+        //Pattern for sorting SDGs
+        Pattern alphaNumPattern = Pattern.compile("(?<=SDG)[0-9]+");
+        
+        //Custom alphanumeric comparator for natural order sorting 
+        Comparator<IConcept> c = new Comparator<IConcept>() {
+            @Override
+            public int compare(IConcept concept1, IConcept concept2) {
+                Matcher match = alphaNumPattern.matcher(concept1.getName());
+                if(match.find()) {
+                    Integer number1 = Integer.parseInt(match.group());
+                    match = alphaNumPattern.matcher(concept2.getName());
+                    if(match.find()) {
+                        Integer number2 = Integer.parseInt(match.group());
+                        if (number1.compareTo(number2) != 0) {
+                            return number1.compareTo(number2);
+                        }
+                    }
+                }
+                return concept1.getName().compareTo(concept2.getName());
+            }
+        };
+        children.sort(c);
         return children;
     }
 
