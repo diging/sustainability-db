@@ -86,8 +86,8 @@ public class Concept implements IConcept {
     @Override
     public List<IConcept> getChildren() {
         
-        //Pattern for left to right integer scanning
-        Pattern alphaNumPattern = Pattern.compile("SDG[0-9]+");
+        //Pattern for sorting SDGs
+        Pattern alphaNumPattern = Pattern.compile("(?<=SDG)[0-9]+");
         
         //Custom alphanumeric comparator for natural order sorting 
         Comparator<IConcept> c = new Comparator<IConcept>() {
