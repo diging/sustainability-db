@@ -2,11 +2,9 @@ package edu.asu.diging.sustainability.core.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import edu.asu.diging.sustainability.core.data.ConceptRepository;
 import edu.asu.diging.sustainability.core.model.IConcept;
 import edu.asu.diging.sustainability.core.model.SearchCategory;
@@ -55,29 +53,19 @@ public class ConceptManager implements IConceptManager {
     }
 
     /**
-     * Store the given search categories with the provided concept.
+     * Store the given search categories and alias for the concept with given Id.
      * 
      * @param conceptId The id of the concept for which the search categories are provided.
      * @param searchCategories a list of roles.
-     */
-    @Override
-    public void storeConceptSearchCategories(String conceptId, List<SearchCategory> searchCategories) {
-        IConcept concept = getConceptById(conceptId);
-        concept.setSearchCategories(searchCategories);
-        conceptRepo.save((Concept) concept);
-    }
-
-    /**
-     * Store the alias for concept name for the concept with given Id.
-     * 
-     * @param conceptId The id of the concept for which the alias is provided.
      * @param alias Alias for the concept name to be saved.
      */
     @Override
-    public void storeConceptAlias(String conceptId, String alias) {
+    public void storeConceptSearchCategoriesAndAlias(String conceptId,
+            List<SearchCategory> searchCategories, String alias) {
         IConcept concept = getConceptById(conceptId);
+        concept.setSearchCategories(searchCategories);
         concept.setAlias(alias);
         conceptRepo.save((Concept) concept);
-        
     }
+
 }
