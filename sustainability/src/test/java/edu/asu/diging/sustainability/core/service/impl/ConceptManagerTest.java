@@ -17,7 +17,9 @@ import static org.mockito.Mockito.verify;
 public class ConceptManagerTest {
 
     private String alias = "concept";
+
     private List<SearchCategory> categoryList = new ArrayList<SearchCategory>();
+
     @Mock
     private ConceptRepository conceptRepo;
 
