@@ -20,18 +20,18 @@ public class ConceptManagerTest {
     private List<SearchCategory> categoryList = new ArrayList<SearchCategory>();
     @Mock
     private ConceptRepository conceptRepo;
-    
+
     @InjectMocks
     private ConceptManager conceptManager = new ConceptManager();
 
     private Concept concept = new Concept();
-    
+
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
         concept.setId("ConceptId1");
     }
-    
+
     @Test
     public void test_storeConceptSearchCategoriesAndAlias_success() {
         concept.setSearchCategories(categoryList);
