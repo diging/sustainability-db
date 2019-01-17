@@ -10,15 +10,13 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import edu.asu.diging.sustainability.core.data.ConceptRepository;
+import edu.asu.diging.sustainability.core.model.IConcept;
 import edu.asu.diging.sustainability.core.model.SearchCategory;
 import edu.asu.diging.sustainability.core.model.impl.Concept;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 
 public class ConceptManagerTest {
-
-    private String alias = "concept";
-
-    private List<SearchCategory> categoryList = new ArrayList<SearchCategory>();
 
     @Mock
     private ConceptRepository conceptRepo;
@@ -26,22 +24,26 @@ public class ConceptManagerTest {
     @InjectMocks
     private ConceptManager conceptManager = new ConceptManager();
 
-    private Concept concept = new Concept();
-
     @Before
     public void init() {
         MockitoAnnotations.initMocks(this);
-        concept.setId("ConceptId1");
     }
 
     @Test
     public void test_storeConceptSearchCategoriesAndAlias_success() {
+        Concept concept = new Concept();
+        concept.setId("ConceptId1");
+        String alias = "concept";
+        List<SearchCategory> categoryList = new ArrayList<SearchCategory>();
         concept.setSearchCategories(categoryList);
         concept.setAlias(alias);
         Mockito.when(conceptRepo.findById("ConceptId1")).thenReturn(Optional.of(concept));
         Mockito.when(conceptRepo.save(concept)).thenReturn(concept);
-        conceptManager.storeConceptSearchCategoriesAndAlias(concept.getId(), categoryList, alias);
+        IConcept savedConcept = conceptManager.storeConceptSearchCategoriesAndAlias(concept.getId(),
+                categoryList, alias);
         verify(conceptRepo).save(concept);
+        assertEquals(savedConcept.getAlias(), concept.getAlias());
+        assertEquals(savedConcept.getSearchCategories(), concept.getSearchCategories());
     }
 
 }

@@ -12,7 +12,7 @@ public interface IConceptManager {
 
     IConcept getConceptById(String id);
 
-    void storeConceptSearchCategoriesAndAlias(String conceptId,
+    IConcept storeConceptSearchCategoriesAndAlias(String conceptId,
             List<SearchCategory> searchCategories, String alias);
 
 }

@@ -60,12 +60,12 @@ public class ConceptManager implements IConceptManager {
      * @param alias Alias for the concept name to be saved.
      */
     @Override
-    public void storeConceptSearchCategoriesAndAlias(String conceptId,
+    public IConcept storeConceptSearchCategoriesAndAlias(String conceptId,
             List<SearchCategory> searchCategories, String alias) {
         IConcept concept = getConceptById(conceptId);
         concept.setSearchCategories(searchCategories);
         concept.setAlias(alias);
-        conceptRepo.save((Concept) concept);
+        return conceptRepo.save((Concept) concept);
     }
 
 }
