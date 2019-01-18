@@ -20,7 +20,12 @@
 		<div class="row">
 			<div class="col-md-2">
 				<p>
-					<strong>${concept.name}</strong>
+					<c:if test="${not empty concept.alias}" >
+						<strong>${concept.alias}</strong>
+					</c:if>
+					<c:if test="${empty concept.alias}" >
+						<strong>${concept.name}</strong>
+					</c:if>
 				</p>
 			</div>
 			<div class="col-md-10">

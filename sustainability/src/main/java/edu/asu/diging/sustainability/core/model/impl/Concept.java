@@ -31,6 +31,15 @@ public class Concept implements IConcept {
     private String id;
     private String name;
     private String uri;
+    private String alias;
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
 
     @ManyToOne(targetEntity = Concept.class)
     private IConcept parent;

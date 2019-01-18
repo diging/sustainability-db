@@ -27,5 +27,9 @@ public interface IConcept {
     void setSearchCategories(List<SearchCategory> roles);
 
     List<SearchCategory> getSearchCategories();
+    
+    String getAlias();
+
+    void setAlias(String alias);
 
 }

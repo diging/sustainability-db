@@ -1,7 +1,6 @@
 package edu.asu.diging.sustainability.web.admin;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
@@ -10,15 +9,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import edu.asu.diging.sustainability.core.model.SearchCategory;
 import edu.asu.diging.sustainability.core.service.IConceptManager;
 import edu.asu.diging.sustainability.web.admin.pages.ConceptForm;
 
 /**
- * @author namrathaov  
+ * @author namrathaov
  * 
- * Controller for configuring the search categories of concepts.
+ *         Controller for configuring the search categories of concepts.
  */
 @Controller
 @PropertySource("classpath:config.properties")
@@ -47,7 +45,8 @@ public class ConceptConfigurationController {
             @ModelAttribute("form") ConceptConfigurationForm conceptConfigurationForm,
             BindingResult results, Model model, HttpServletRequest request) {
         for (ConceptForm concept : conceptConfigurationForm.getConcepts()) {
-            conceptManager.storeConceptSearchCategories(concept.getId(), concept.getSearchCategories());
+            conceptManager.storeConceptSearchCategoriesAndAlias(concept.getId(),
+                    concept.getSearchCategories(), concept.getConceptAlias());
         }
         return "redirect:/admin/concept/list";
     }
